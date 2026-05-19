@@ -53,16 +53,20 @@ if %ERRORLEVEL% equ 0 (
 )
 
 echo.
-echo === [TEST 3] setx JAVA_TOOL_OPTIONS installation ===
+echo === [TEST 3] _JAVA_OPTIONS .reg file generation ===
 echo.
-echo Run this as Administrator to test:
-echo   java -jar itaxviewer-signature-bypass-agent.jar
+echo Run: java -jar itaxviewer-signature-bypass-agent.jar
+echo   -> Creates install-agent.reg in same folder
+echo   -> Opens Registry Editor (click Yes to import)
 echo.
-echo After install, verify:
-echo   reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v JAVA_TOOL_OPTIONS
+echo Or if no Java installed:
+echo   Double-click install-agent.reg directly
 echo.
-echo Or for current user:
-echo   reg query HKCU\Environment /v JAVA_TOOL_OPTIONS
+echo Verify after install:
+echo   reg query HKCU\Environment /v _JAVA_OPTIONS
+echo.
+echo Uninstall:
+echo   reg delete HKCU\Environment /v _JAVA_OPTIONS /f
 echo.
 
 echo.
@@ -70,7 +74,8 @@ echo === [TEST 4] Real iTaxViewer (manual) ===
 echo.
 echo Steps:
 echo   1. Copy agent JAR to C:\iTaxViewer\
-echo   2. Run: java -jar itaxviewer-signature-bypass-agent.jar
+echo   2. java -jar itaxviewer-signature-bypass-agent.jar
+echo      -> creates install-agent.reg -> click Yes
 echo   3. Double-click iTaxViewer shortcut
 echo   4. Open any signed XML -> should show "Chu ky dien tu hop le" (green)
 echo.

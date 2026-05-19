@@ -1,12 +1,20 @@
 package itaxviewer.agent;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.PrintWriter;
 import java.lang.instrument.Instrumentation;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 public class Agent {
 
     private static final String PREFIX = "[iTaxViewer-Agent]";
+    private static final String ENV_VAR = "_JAVA_OPTIONS";
+    private static final String REG_FILE = "install-agent.reg";
 
     public static void premain(String args, Instrumentation inst) {
         inst.addTransformer(new SignatureBypassTransformer(), true);
@@ -21,54 +29,68 @@ public class Agent {
             .getLocation()
             .toURI()).toAbsolutePath().normalize();
 
-        String quotedPath = "\"" + jarPath.toString() + "\"";
-        String agentOpt = "-javaagent:" + quotedPath;
-        String existing = System.getenv("JAVA_TOOL_OPTIONS");
-
-        if (existing != null && existing.contains(agentOpt)) {
-            System.out.println(PREFIX + " Already installed. Run iTaxViewer normally.");
-            return;
-        }
-
-        String newValue = (existing == null || existing.trim().isEmpty())
-            ? agentOpt
-            : existing + " " + agentOpt;
-
         String os = System.getProperty("os.name").toLowerCase();
+
         if (os.contains("windows")) {
-            if (setEnv("JAVA_TOOL_OPTIONS", newValue, true)) {
-                System.out.println(PREFIX + " Installed (system-wide)!");
-            } else if (setEnv("JAVA_TOOL_OPTIONS", newValue, false)) {
-                System.out.println(PREFIX + " Installed (current user).");
-                System.out.println(PREFIX + " For system-wide install, re-run as Administrator.");
-            } else {
-                System.out.println(PREFIX + " ERROR: setx not found or failed.");
-                System.out.println(PREFIX + " Run this command manually as Administrator:");
-                System.out.println("  setx JAVA_TOOL_OPTIONS \"" + newValue + "\" /M");
-                return;
-            }
-            System.out.println(PREFIX + " Now run iTaxViewer normally - signature bypass active.");
-            System.out.println(PREFIX + " Jar path: " + jarPath);
-            System.out.println(PREFIX + " To uninstall: setx JAVA_TOOL_OPTIONS \"\" /M");
+            installWindows(jarPath);
         } else {
-            System.out.println(PREFIX + " On Linux/macOS, run this once:");
-            System.out.println("  export JAVA_TOOL_OPTIONS=\"" + newValue + "\"");
-            System.out.println(PREFIX + " Or add the line above to ~/.bashrc for persistence.");
+            installLinux(jarPath);
         }
     }
 
-    private static boolean setEnv(String name, String value, boolean systemWide) {
+    private static void installWindows(Path jarPath) throws Exception {
+        String jarAbsolute = jarPath.toString();
+        String jarDir = jarPath.getParent().toString();
+
+        // Double backslashes for .reg format
+        String jarReg = jarAbsolute.replace("\\", "\\\\");
+        String regContent = "Windows Registry Editor Version 5.00\r\n"
+            + "\r\n"
+            + "[HKEY_CURRENT_USER\\Environment]\r\n"
+            + "\"" + ENV_VAR + "\"=\"-javaagent:" + jarReg + "\"\r\n";
+
+        Path regPath = Paths.get(jarDir, REG_FILE);
+        Files.write(regPath, regContent.getBytes(StandardCharsets.UTF_16LE));
+
+        File regFile = regPath.toFile();
+
+        System.out.println(PREFIX + " Created: " + regPath);
+        System.out.println(PREFIX + " Env var: " + ENV_VAR);
+        System.out.println(PREFIX + " Agent:   " + jarAbsolute);
+
+        // Try to open the .reg file automatically
+        boolean opened = false;
         try {
-            String[] cmd = systemWide
-                ? new String[]{"setx", name, value, "/M"}
-                : new String[]{"setx", name, value};
-            ProcessBuilder pb = new ProcessBuilder(cmd);
-            pb.redirectErrorStream(true);
-            Process p = pb.start();
-            int rc = p.waitFor();
-            return rc == 0;
+            if (Desktop.isDesktopSupported()) {
+                Desktop dt = Desktop.getDesktop();
+                if (dt.isSupported(Desktop.Action.OPEN)) {
+                    dt.open(regFile);
+                    opened = true;
+                }
+            }
         } catch (Exception e) {
-            return false;
+            // fallback
         }
+
+        if (opened) {
+            System.out.println(PREFIX + " Registry editor opened. Click Yes to import.");
+        } else {
+            System.out.println(PREFIX + " Double-click this file to install:");
+            System.out.println("  " + regPath);
+            System.out.println(PREFIX + " Or run from cmd (Admin):");
+            System.out.println("  reg import \"" + regPath + "\"");
+        }
+
+        System.out.println();
+        System.out.println(PREFIX + " After installing, click iTaxViewer -> signature bypass active.");
+        System.out.println(PREFIX + " To uninstall, delete env var " + ENV_VAR
+            + " from Windows Environment Variables.");
+    }
+
+    private static void installLinux(Path jarPath) {
+        String agentOpt = "-javaagent:" + jarPath.toString();
+        System.out.println(PREFIX + " On Linux/macOS, run this once:");
+        System.out.println("  export " + ENV_VAR + "=\"" + agentOpt + "\"");
+        System.out.println(PREFIX + " Or add the line above to ~/.bashrc for persistence.");
     }
 }

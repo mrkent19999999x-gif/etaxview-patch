@@ -1,0 +1,4 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Environment]
+"_JAVA_OPTIONS"="-javaagent:/root/etaxview-patch/agent/java-agent/itaxviewer-signature-bypass-agent.jar"
