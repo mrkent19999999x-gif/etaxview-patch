@@ -61,7 +61,7 @@ public class SignatureBypassTransformer implements ClassFileTransformer {
 
         try {
             ClassReader cr = new ClassReader(classfileBuffer);
-            ClassWriter cw = new ClassWriter(cr, ClassWriter.COMPUTE_MAXS);
+            ClassWriter cw = new ClassWriter(0);
 
             cr.accept(new ClassVisitor(Opcodes.ASM9, cw) {
                 @Override
@@ -72,21 +72,38 @@ public class SignatureBypassTransformer implements ClassFileTransformer {
                     for (TargetMethod target : targets) {
                         if (name.equals(target.name) && descriptor.equals(target.desc)) {
                             System.out.println("[iTaxViewer-Agent]   Bypassed: " + name + descriptor);
+                            int maxLocals = countLocalSlots(descriptor,
+                                (access & Opcodes.ACC_STATIC) != 0);
+                            final MethodVisitor targetMv = mv;
+
+                            if (targetMv == null) {
+                                return new MethodVisitor(Opcodes.ASM9) {
+                                    boolean done = false;
+                                    @Override
+                                    public void visitCode() {
+                                        if (!done) {
+                                            super.visitCode();
+                                            super.visitInsn(Opcodes.RETURN);
+                                            super.visitMaxs(0, maxLocals);
+                                            super.visitEnd();
+                                            done = true;
+                                        }
+                                    }
+                                };
+                            }
+
                             return new MethodVisitor(Opcodes.ASM9) {
+                                boolean done = false;
+
                                 @Override
                                 public void visitCode() {
-                                    mv.visitCode();
-                                    mv.visitInsn(Opcodes.RETURN);
-                                }
-
-                                @Override
-                                public void visitMaxs(int maxStack, int maxLocals) {
-                                    mv.visitMaxs(0, 0);
-                                }
-
-                                @Override
-                                public void visitEnd() {
-                                    mv.visitEnd();
+                                    if (!done) {
+                                        targetMv.visitCode();
+                                        targetMv.visitInsn(Opcodes.RETURN);
+                                        targetMv.visitMaxs(0, maxLocals);
+                                        targetMv.visitEnd();
+                                        done = true;
+                                    }
                                 }
                             };
                         }
@@ -99,7 +116,41 @@ public class SignatureBypassTransformer implements ClassFileTransformer {
             return cw.toByteArray();
         } catch (Exception e) {
             System.err.println("[iTaxViewer-Agent] Error transforming " + className + ": " + e.getMessage());
+            e.printStackTrace();
             return null;
         }
+    }
+
+    private static int countLocalSlots(String descriptor, boolean isStatic) {
+        int slots = isStatic ? 0 : 1;
+        String params = descriptor.substring(1, descriptor.indexOf(')'));
+        int i = 0;
+        while (i < params.length()) {
+            char c = params.charAt(i);
+            if (c == 'B' || c == 'C' || c == 'F' || c == 'I' || c == 'S' || c == 'Z') {
+                slots++;
+                i++;
+            } else if (c == 'D' || c == 'J') {
+                slots += 2;
+                i++;
+            } else if (c == 'L') {
+                slots++;
+                i = params.indexOf(';', i) + 1;
+            } else if (c == '[') {
+                slots++;
+                i++;
+                while (i < params.length() && params.charAt(i) == '[') i++;
+                if (i < params.length() && params.charAt(i) == 'L') {
+                    i = params.indexOf(';', i) + 1;
+                } else {
+                    i++;
+                }
+            } else if (c == '(') {
+                i++;
+            } else {
+                i++;
+            }
+        }
+        return slots;
     }
 }
