@@ -35,6 +35,7 @@ echo "Creating manifest..."
 cat > "$BUILD_DIR/manifest.mf" <<'MANIFEST'
 Manifest-Version: 1.0
 Premain-Class: itaxviewer.agent.Agent
+Main-Class: itaxviewer.agent.Agent
 Can-Retransform-Classes: true
 
 MANIFEST
@@ -49,7 +50,14 @@ echo "Agent JAR: $AGENT_JAR"
 ls -lh "$AGENT_JAR"
 echo ""
 echo "=== USAGE ==="
-echo "java -javaagent:itaxviewer-signature-bypass-agent.jar -jar itaxviewer.jar"
 echo ""
-echo "Or for iTaxViewer launcher, add to JVM args:"
-echo "  -javaagent:path/to/itaxviewer-signature-bypass-agent.jar"
+echo "[1] INSTALL (run once on Windows - double-click or java -jar):"
+echo "    java -jar itaxviewer-signature-bypass-agent.jar"
+echo "    -> Sets JAVA_TOOL_OPTIONS persistently via setx /M"
+echo "    -> After this, run iTaxViewer normally"
+echo ""
+echo "[2] or manually add -javaagent to JVM args:"
+echo "    java -javaagent:itaxviewer-signature-bypass-agent.jar -jar itaxviewer.jar"
+echo ""
+echo "[3] Uninstall:"
+echo "    setx JAVA_TOOL_OPTIONS \"\" /M"
