@@ -1,0 +1,190 @@
+    table td .bieu_mau_div{
+        width:100%;
+        align: center;
+
+    }
+    table td .bieu_mau_div div{	
+        text-align: center;
+        border: 1px solid;
+        padding: 2px;	
+    }
+	.header_div{
+        width:100%;
+
+    }
+	.tb_header{
+        width:100%;
+
+    }
+	
+    .footer_div{
+        align:left !important;
+
+    }
+
+    .footer_div table tr, .footer_div table td{
+        padding: 5px;
+    }
+
+    .ndungtkhai_div table{
+        width: 100%;
+    }
+    .tentkhai{
+		TEXT-TRANSFORM: uppercase;	
+        text-align: center;
+        font-weight: bold;
+    }
+    .mtatentkhai{
+        text-align: center;
+        font-style:italic; 
+    }
+    .bketitle{
+        padding-left: 110px;
+        padding-right: 110px;
+        font-weight: bold;
+        text-align:center;
+    }
+
+    table {
+        border: none;
+        font-family: "Times New Roman", "Arial", "Courier New";
+        font-size: 12pt;    
+    }
+    table.tkhai_table {
+        border: solid;
+        border-width: 1px;
+        border-collapse: collapse; 
+        border-color: gray;
+        font-family: "Times New Roman", "Arial", "Courier New";
+        font-size: 12pt;	
+        border-spacing: 5px;
+    }
+	
+    table.tkhai_table tr, table.tkhai_table td{
+        padding: 5px;
+        border:1px solid #ccc;
+    } 
+
+    table.tkhai_table2 {
+        border-collapse: collapse; 
+        font-family: "Times New Roman", "Arial", "Courier New";
+        font-size: 12pt;	
+        border-spacing: 5px;
+    }
+    table.tkhai_table2 tr, table.tkhai_table2 td{
+        padding: 5px;
+    } 
+    .align-r {
+        text-align:right!important;
+        vertical-align:middle !important;
+    }
+    .align-l {
+        text-align:left!important;
+        vertical-align:middle !important;
+    }
+    .align-c {
+        text-align:center!important;
+        vertical-align:middle !important;
+    }
+    .float-r {
+        float:right;
+    }
+    .float-l {
+        float:left;
+    }
+    .tkhaiheader {
+        font-weight: bold;
+        text-align:center;
+    }
+    .dkthue {
+        border:1px solid #ccc;
+    }
+    .donvitien {
+        text-align:right;
+    }
+    .b {
+        font-weight: bold;
+    }
+    .i {
+        font-weight: italic;
+    }
+    .content {
+
+
+    }
+    .content div {
+        padding:3px;
+    }
+    .content div div {
+        padding-left:20px;
+    }
+    .content div div div {
+        padding-left:30px;
+    }
+    /*table-KHBS-anhdt-edit*/
+    .tkhai_table3{
+        border: solid;
+        border-width: 1px;
+        border-collapse: collapse; 
+        border-color: gray;
+        font-family: "Times New Roman", "Arial", "Courier New";
+        font-size: 12pt;	
+        border-spacing: 5px;
+        margin-bottom:10px;
+    }
+
+    .tkhai_table3 tr, .tkhai_table3 td{
+        padding: 5px;
+        border:1px solid #ccc;
+    }
+    /*end*/ 
+	.content2 table{ float:left; padding:0 10px 0 0}
+	.tkhai_table_k { border-right-style:ridge;border-right-color:##F5F5F5;border-right-width:1px}
+	 .align-l1 {
+        text-align:left!important;
+        vertical-align:top !important;
+    }
+	
+	/* HoanNC */
+	/* KDT css */
+	.box_mau_so { border: 1px solid; float: right; height: auto; padding: 5px;
+					position: relative; top: -10px; width: auto; text-align:center; }
+	#tab50 { display:inline-block; margin-left: 50pt; }
+	#tab100 { display:inline-block; margin-left: 100pt; }
+	#td_table {padding: 2px 3px 2px 3px;}
+	#upper{ text-transform: uppercase;}
+	#lower{ text-transform: lowercase;}
+	.table_hr1 { border-width: 1px thin; margin-top: -8px; width: 145px; }
+	.table_hr2 { border-width: 1px thin; margin-top: 8px; width: 150px; }
+	.table_hr3 { border-width: 1px thin; margin-top: 8px; width: 105px; }
+	.content_kdt {
+		padding: 0pt 57pt 0pt 85pt; text-align: justify;
+	}
+	.content_bke {
+		padding: 0pt 20pt 0pt 30pt; text-align: justify;
+	}
+	.align-j {
+		text-align: justify;
+	}
+	.item_align{
+		align: center;
+	}	
+	.table_hd1 { width: 100%; text-align: center; }
+	.table_hd1 td { padding: 0px;}
+	.line1_5{
+		line-height:1.5;
+	}
+	.fz13px{
+		font-size:13px !important;
+	}
+	.fz14px {
+		font-size: 14px !important;
+	}
+	.fz17px{
+		font-size:17px !important;
+	}
+	.fz18_5px{
+		font-size:18.5px !important;
+	}
+	
+	/*end HoanNC */

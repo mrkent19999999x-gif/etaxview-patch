@@ -1,0 +1,35 @@
+<html>
+<link rel="stylesheet" type="text/css" href="css/ihtkk.css">
+<link rel="stylesheet" type="text/css" href="css/ihtkk_ntdt.css">
+<head>
+<script>
+  function printPdf(){
+     var ifr = document.getElementById("frame1");
+         //PDF is completely loaded. (.load() wasn't working properly with PDFs)
+     ifr.onreadystatechange = function () {
+        if (ifr.readyState == 'complete') {
+              ifr.contentWindow.focus();
+              ifr.contentWindow.print();
+           }
+       }
+ }
+</script>
+</head>
+<body>
+<iframe name="Frame1" id="frame1" src="file:///C:/Users/Administrator/Desktop/BB_Nghiem_Thu_Kiem_Thu_iHTKK_goi_3_V02.pdf#toolbar=0&navpanes=0">
+</iframe>
+      </td>
+     </tr>
+     <tr>
+      <td id="signature">xxx111111111</td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table>
+ <script>
+ printPdf();
+
+ </script>
+</body>
+</html>

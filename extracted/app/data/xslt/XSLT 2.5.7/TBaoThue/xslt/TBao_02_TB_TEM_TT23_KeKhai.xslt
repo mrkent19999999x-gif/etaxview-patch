@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+xmlns:ihtkk="http://www.nhantokhai.gdt.gov.vn/xslt">
+<xsl:include href="../include/tbaoheader.xsl"/>
+<xsl:include href="../include/TBaoFooter.xsl"/>    
+<xsl:include href="../common/common.xsl"/>
+	<xsl:template match="/">
+		<xsl:variable name="tbThue" select='TBaoThueDTu/TBaoThue/TTinChung/TTinTBaoThue' />
+		<xsl:variable name="sotbThue" select='TBaoThueDTu/soTbao' />
+		
+		<xsl:variable name="ttinCQT" select='TBaoThueDTu/TBaoThue/TTinChung/CQT' />
+		<xsl:variable name="NNhanTBaoThue" select='TBaoThueDTu/TBaoThue/TTinChung/NNhanTBaoThue' />
+		<xsl:variable name="ndungTBao" select='TBaoThueDTu/TBaoThue/NDungTBao' />
+		<xsl:variable name="moTaBieuMau" select="'Ban hành kèm theo Thông tư số 23/2021/TT-BTC ngày 30/03/2021 của Bộ trưởng Bộ Tài chính'"/>
+
+		<xsl:call-template name="tbaoHeader_02_TB_TEM">
+			<xsl:with-param name="mauTBao"   select="'02/TB/TEM'"/>
+			<xsl:with-param name="soTBao"   select="$sotbThue/so" />
+			<xsl:with-param name="ngayTBao"   select="$sotbThue/ngayTBao" />
+		  <xsl:with-param name="moTaBieuMau"   select="$moTaBieuMau"/>
+			<xsl:with-param name="motaTBao"   select="$tbThue/tenTBao" />
+
+		</xsl:call-template>
+		<br/>
+		
+				<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Kính gửi: <xsl:value-of select="$NNhanTBaoThue/tenNNhan"/></div>
+				<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Mã số thuế của NNT: <xsl:value-of select="$NNhanTBaoThue/maNNhan"/></div>
+				<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Căn cứ <xsl:value-of select="$ndungTBao/HoSoThue/CTietHoSoThue/tokhai-phuluc"/> của Người nộp thuế (NNT) gửi tới cơ quan thuế lúc <xsl:value-of select="ihtkk:stringDatetimeTEM($ndungTBao/ngayNopThucTe,'hh')"/> giờ <xsl:value-of select="ihtkk:stringDatetimeTEM($ndungTBao/ngayNopThucTe,'mi')"/> phút ngày <xsl:value-of select="ihtkk:stringDatetimeTEM($ndungTBao/ngayNopThucTe,'dd')"/> tháng <xsl:value-of select="ihtkk:stringDatetimeTEM($ndungTBao/ngayNopThucTe,'mm')"/> năm <xsl:value-of select="ihtkk:stringDatetimeTEM($ndungTBao/ngayNopThucTe,'yyyy')"/>.</div>
+					
+				<xsl:if test="$ndungTBao/trangThai='N'">
+						<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Cơ quan thuế thông báo không chấp nhận <xsl:value-of select="$ndungTBao/HoSoThue/CTietHoSoThue/tokhai-phuluc"/> của NNT.</div>
+					
+						
+						<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Lý do không chấp nhận: <xsl:value-of select="$ndungTBao/LyDo/CTietLyDo/tenLoi"/>.</div>
+						
+				</xsl:if>	
+				<xsl:if test="$ndungTBao/trangThai='Y'">
+						<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Cơ quan thuế thông báo chấp nhận <xsl:value-of select="$ndungTBao/HoSoThue/CTietHoSoThue/tokhai-phuluc"/> của NNT.</div>
+							
+				</xsl:if>
+						
+			
+						
+		 
+		<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Cơ quan thuế thông báo để người nộp thuế biết, thực hiện./.</div>		
+		<table style="page-break-inside: avoid;width:100%">
+			<tr>
+				<td>		  
+		
+			
+				
+				<td width="35%">
+				
+					&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<b>Nơi nhận:</b><br/> 					
+					&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;- Như trên;<br/>	
+					&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;- Lưu: VT, 
+				</td>
+				<td  width="25%">
+				
+					
+					
+				</td>
+				
+					<td width="40%" class="align-c">
+					<b>THỦ TRƯỞNG CƠ QUAN THUẾ</b>
+					<br/>
+					<b>RA THÔNG BÁO</b>
+					<br/>
+					<i> (Chữ ký số của Thủ trưởng cơ quan thuế)</i>
+					</td>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				
+			
+		
+			
+		
+		
+					<div id="sigDiv"></div>
+				</td>
+			</tr>
+		</table>		
+	</xsl:template>		
+</xsl:stylesheet>

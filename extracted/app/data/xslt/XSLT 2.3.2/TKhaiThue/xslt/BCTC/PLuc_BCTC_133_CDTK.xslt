@@ -1,0 +1,1514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+xmlns:ihtkk="http://www.nhantokhai.gdt.gov.vn/xslt">
+<xsl:include href="../../include/TKhaiHeader.xsl"/>
+ <xsl:include href="../../include/TKhaiFooter.xsl"/>    
+ <xsl:include href="../../common/common.xsl"/> 
+		<xsl:template match="/">
+	    <xsl:variable name="ttkthue" select='HSoThueDTu/HSoKhaiThue/TTinChung/TTinTKhaiThue' />		
+		<xsl:variable name="tkchinh" select='HSoThueDTu/HSoKhaiThue/CTieuTKhaiChinh' />
+		<xsl:variable name="moTaBieuMau" select="'Ban hành theo Thông tư số 133/2016/TT-BTC ngày 26/8/2016 của Bộ Tài chính'" />
+		<xsl:variable name="ghiChuPL1"   select="''"/>
+		
+		
+<!-- KẾT QUẢ HOẠT ĐỘNG SẢN XUẤT KINH DOANH  -->
+
+	<xsl:if test="HSoThueDTu/HSoKhaiThue/PLuc/PL_CDTK">	
+	<xsl:variable name="pluc04" select='HSoThueDTu/HSoKhaiThue/PLuc/PL_CDTK' />	
+	
+		<xsl:call-template name="tkhaiHeader-plucBCTC133">
+		<xsl:with-param name="mauTKhai"   select="'F01 - DNN'"/>
+		<xsl:with-param name="moTaBieuMau"   select="$moTaBieuMau"/>
+		<xsl:with-param name="tenPL"   select="'BẢNG CÂN ĐỐI TÀI KHOẢN'"/>
+		<xsl:with-param name="ghiChuPL"   select="''"/>
+	  </xsl:call-template>
+	  
+	<div class="ndungtkhai_div">
+	<div class="content">
+    <div class="align-r"><i>Đơn vị tiền: đồng Việt Nam</i></div><br/>
+    
+    <table class="tkhai_table">
+        <tr>
+            <td class="align-c"><b>Số hiệu tài khoản</b></td>
+            <td class="align-c"><b>Tên tài khoản</b></td>
+            <td class="align-c" colspan="2"><b>Số dư đầu kỳ </b></td>
+            <td class="align-c" colspan="2"><b>Số phát sinh trong kỳ</b></td>
+            <td class="align-c" colspan="2"><b>Số dư cuối kỳ</b></td>
+        </tr>
+        <tr>
+            <td class="align-c"><b></b></td>
+            <td class="align-c"><b></b></td>
+            <td class="align-c"><b>Nợ</b></td>
+            <td class="align-c"><b>Có</b></td>
+            <td class="align-c"><b>Nợ</b></td>
+            <td class="align-c"><b>Có</b></td>
+            <td class="align-c"><b>Nợ</b></td>
+            <td class="align-c"><b>Có</b></td>
+        </tr>
+        <tr>
+            <td class="align-c">A</td>
+            <td class="align-c">B</td>
+            <td class="align-c">1</td>
+            <td class="align-c">2</td>
+            <td class="align-c">3</td>
+            <td class="align-c">4</td>
+            <td class="align-c">5</td>
+            <td class="align-c">6</td>
+        </tr>
+        <tr>
+            <td class="align-c"><b>111</b></td>
+            <td><b>Tiền mặt</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct111"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct111"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct111"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct111"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct111"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct111"/></b></td>
+        </tr>
+        <tr>            
+            <td class="align-c">1111</td>
+            <td>Tiền Việt Nam</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct1111"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct1111"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct1111"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct1111"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct1111"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct1111"/></td>
+        </tr>
+        <tr>
+            <td class="align-c">1112</td>
+            <td>Ngoại tệ</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct1112"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct1112"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct1112"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct1112"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct1112"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct1112"/></td>
+        </tr>
+        
+        <tr>            
+            <td class="align-c"><b>112</b></td>
+            <td><b>Tiền gửi Ngân hàng</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct112"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct112"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct112"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct112"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct112"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct112"/></b></td>
+        </tr>
+        <tr>
+            <td class="align-c">1121</td>            
+            <td>Tiền Việt Nam</td>            
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct1121"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct1121"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct1121"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct1121"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct1121"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct1121"/></td>
+        </tr>
+        <tr>            
+            <td class="align-c">1122</td>
+            <td>Ngoại tệ</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct1122"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct1122"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct1122"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct1122"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct1122"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct1122"/></td>
+        </tr>
+      
+        <tr>            
+            <td class="align-c"><b>121</b></td>
+            <td><b>Chứng khoán kinh doanh</b> </td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct121"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct121"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct121"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct121"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct121"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct121"/></b></td>
+        </tr>
+        <tr>            
+            <td class="align-c"><b>128</b></td>
+            <td><b>Đầu tư nắm giữ đến ngày đáo hạn</b> </td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct128"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct128"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct128"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct128"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct128"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct128"/></b></td>
+        </tr>
+        <tr>            
+            <td class="align-c">1281</td>
+            <td>Tiền gửi có kỳ hạn </td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct1281"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct1281"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct1281"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct1281"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct1281"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct1281"/></td>
+        </tr>
+          <tr>            
+            <td class="align-c">1288</td>
+            <td>Các khoản đầu tư khác nắm giữ đến ngày đáo hạn </td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct1288"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct1288"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct1288"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct1288"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct1288"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct1288"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>131</b></td>
+            <td><b>Phải thu của khách hàng </b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct131"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct131"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct131"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct131"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct131"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct131"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>133</b></td>
+            <td><b>Thuế GTGT được khấu trừ</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct133"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct133"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct133"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct133"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct133"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct133"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">1331</td>
+            <td>Thuế GTGT được khấu trừ của hàng hoá, dịch vụ</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct1331"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct1331"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct1331"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct1331"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct1331"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct1331"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">1332</td>
+            <td>Thuế GTGT được khấu trừ của TSCĐ</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct1332"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct1332"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct1332"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct1332"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct1332"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct1332"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>136</b></td>
+            <td><b>Phải thu nội bộ</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct136"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct136"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct136"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct136"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct136"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct136"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">1361</td>
+            <td>Vốn kinh doanh ở đơn vị trực thuộc </td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct1361"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct1361"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct1361"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct1361"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct1361"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct1361"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">1368</td>
+            <td>Phải thu nội bộ khác </td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct1368"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct1368"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct1368"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct1368"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct1368"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct1368"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>138</b></td>
+            <td><b>Phải thu khác</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct138"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct138"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct138"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct138"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct138"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct138"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">1381</td>
+            <td>Tài sản thiếu chờ xử lý</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct1381"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct1381"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct1381"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct1381"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct1381"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct1381"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">1386</td>
+            <td>Cầm cố, thế chấp, ký quỹ, ký cược</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct1386"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct1386"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct1386"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct1386"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct1386"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct1386"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">1388</td>
+            <td>Phải thu khác</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct1388"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct1388"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct1388"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct1388"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct1388"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct1388"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>141</b></td>
+            <td><b>Tạm ứng</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct141"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct141"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct141"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct141"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct141"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct141"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>151</b></td>
+            <td><b>Hàng mua đang đi đường</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct151"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct151"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct151"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct151"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct151"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct151"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>152</b></td>
+            <td><b>Nguyên liệu, vật liệu</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct152"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct152"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct152"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct152"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct152"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct152"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>153</b></td>
+            <td><b>Công cụ, dụng cụ</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct153"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct153"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct153"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct153"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct153"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct153"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>154</b></td>
+            <td><b>Chi phí sản xuất, kinh doanh dở dang </b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct154"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct154"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct154"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct154"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct154"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct154"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>155</b></td>
+            <td><b>Thành phẩm</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct155"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct155"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct155"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct155"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct155"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct155"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>156</b></td>
+            <td><b>Hàng hoá</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct156"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct156"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct156"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct156"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct156"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct156"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>157</b></td>
+            <td><b>Hàng gửi đi bán</b> </td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct157"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct157"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct157"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct157"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct157"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct157"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>211</b></td>
+            <td><b>Tài sản cố định </b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct211"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct211"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct211"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct211"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct211"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct211"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">2111</td>
+            <td>TSCĐ hữu hình</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct2111"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct2111"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct2111"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct2111"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct2111"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct2111"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">2112</td>
+            <td>TSCĐ thuê tài chính</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct2112"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct2112"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct2112"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct2112"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct2112"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct2112"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">2113</td>
+            <td>TSCĐ vô hình</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct2113"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct2113"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct2113"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct2113"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct2113"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct2113"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>214</b></td>
+            <td><b>Hao mòn TSCĐ</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct214"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct214"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct214"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct214"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct214"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct214"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">2141</td>
+            <td>Hao mòn TSCĐ hữu hình</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct2141"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct2141"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct2141"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct2141"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct2141"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct2141"/></td>
+        </tr>
+        <tr>
+           
+            <td class="align-c">2142</td>
+             <td>Hao mòn TSCĐ thuê tài chính</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct2142"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct2142"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct2142"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct2142"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct2142"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct2142"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">2143</td>
+            <td>Hao mòn TSCĐ vô hình </td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct2143"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct2143"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct2143"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct2143"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct2143"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct2143"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">2147</td>
+            <td>Hao mòn bất động sản đầu tư</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct2147"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct2147"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct2147"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct2147"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct2147"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct2147"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>217</b></td>
+            <td><b>Bất động sản đầu tư</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct217"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct217"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct217"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct217"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct217"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct217"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>228</b></td>
+            <td><b>Đầu tư góp vốn vào đơn vị khác</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct228"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct228"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct228"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct228"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct228"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct228"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">2281</td>
+            <td>Đầu tư vào công ty liên doanh, liên kết</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct2281"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct2281"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct2281"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct2281"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct2281"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct2281"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">2288</td>
+            <td>Đầu tư khác</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct2288"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct2288"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct2288"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct2288"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct2288"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct2288"/></td>
+        </tr>
+       
+        <tr>
+            
+            <td class="align-c"><b>229</b></td>
+            <td><b>Dự phòng tổn thất tài sản</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct229"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct229"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct229"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct229"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct229"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct229"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">2291</td>
+            <td>Dự phòng giảm giá chứng khoán kinh doanh</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct2291"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct2291"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct2291"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct2291"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct2291"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct2291"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">2292</td>
+            <td>Dự phòng tổn thất đầu tư vào đơn vị khác </td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct2292"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct2292"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct2292"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct2292"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct2292"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct2292"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">2293</td>
+            <td>Dự phòng phải thu khó đòi </td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct2293"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct2293"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct2293"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct2293"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct2293"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct2293"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">2294</td>
+            <td>Dự phòng giảm giá hàng tồn kho</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct2294"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct2294"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct2294"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct2294"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct2294"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct2294"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>241</b></td>
+            <td><b>Xây dựng cơ bản dở dang </b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct241"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct241"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct241"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct241"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct241"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct241"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">2411</td>
+            <td>Mua sắm TSCĐ</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct2411"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct2411"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct2411"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct2411"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct2411"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct2411"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">2412</td>
+            <td>Xây dựng cơ bản</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct2412"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct2412"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct2412"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct2412"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct2412"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct2412"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">2413</td>
+            <td>Sửa chữa lớn TSCĐ</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct2413"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct2413"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct2413"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct2413"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct2413"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct2413"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>242</b></td>
+            <td><b>Chi phí trả trước</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct242"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct242"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct242"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct242"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct242"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct242"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b></b></td>
+            <td class="align-c"><b>LOẠI TÀI KHOẢN NỢ PHẢI TRẢ</b></td>
+            <td class="align-r"><b class="number"></b></td>
+            <td class="align-r"><b class="number"></b></td>
+            <td class="align-r"><b class="number"></b></td>
+            <td class="align-r"><b class="number"></b></td>
+            <td class="align-r"><b class="number"></b></td>
+            <td class="align-r"><b class="number"></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>331</b></td>
+            <td><b>Phải trả cho người bán</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct331"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct331"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct331"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct331"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct331"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct331"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>333</b></td>
+            <td><b>Thuế và các khoản phải nộp Nhà nước</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct333"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct333"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct333"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct333"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct333"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct333"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3331</td>
+            <td>Thuế giá trị gia tăng phải nộp</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3331"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3331"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3331"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3331"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3331"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3331"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><i>33311</i></td>
+            <td><i>Thuế GTGT đầu ra</i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoDuDauKy/No/ct33311"/></i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct33311"/></i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct33311"/></i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct33311"/></i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct33311"/></i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct33311"/></i></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><i>33312</i></td>
+            <td><i>Thuế GTGT hàng nhập khẩu</i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoDuDauKy/No/ct33312"/></i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct33312"/></i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct33312"/></i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct33312"/></i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct33312"/></i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct33312"/></i></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3332</td>
+            <td>Thuế tiêu thụ đặc biệt</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3332"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3332"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3332"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3332"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3332"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3332"/></td>
+        </tr>
+        <tr>
+           
+            <td class="align-c">3333</td>
+             <td>Thuế xuất, nhập khẩu</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3333"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3333"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3333"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3333"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3333"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3333"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3334</td>
+            <td>Thuế thu nhập doanh nghiệp</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3334"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3334"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3334"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3334"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3334"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3334"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3335</td>
+            <td>Thuế thu nhập cá nhân</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3335"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3335"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3335"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3335"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3335"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3335"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3336</td>
+            <td>Thuế tài nguyên</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3336"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3336"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3336"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3336"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3336"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3336"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3337</td>
+            <td>Thuế nhà đất, tiền thuê đất</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3337"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3337"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3337"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3337"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3337"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3337"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3338</td>
+            <td>Thuế bảo vệ môi trường và các loại thuế khác</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3338"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3338"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3338"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3338"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3338"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3338"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><i>33381</i></td>
+            <td><i>Thuế bảo vệ môi trường</i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoDuDauKy/No/ct33381"/></i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct33381"/></i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct33381"/></i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct33381"/></i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct33381"/></i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct33381"/></i></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><i>33382</i></td>
+            <td><i>Các loại thuế khác</i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoDuDauKy/No/ct33382"/></i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct33382"/></i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct33382"/></i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct33382"/></i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct33382"/></i></td>
+            <td class="number align-r"><i><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct33382"/></i></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3339</td>
+            <td>Phí, lệ phí và các khoản phải nộp khác</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3339"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3339"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3339"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3339"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3339"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3339"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>334</b></td>
+            <td><b>Phải trả người lao động</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct334"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct334"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct334"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct334"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct334"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct334"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>335</b></td>
+            <td><b>Chi phí phải trả</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct335"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct335"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct335"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct335"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct335"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct335"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>336</b></td>
+            <td><b>Phải trả nội bộ</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct336"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct336"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct336"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct336"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct336"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct336"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3361</td>
+            <td>Phải trả nội bộ về vốn kinh doanh </td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3361"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3361"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3361"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3361"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3361"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3361"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3368</td>
+            <td>Phải trả nội bộ khác</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3368"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3368"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3368"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3368"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3368"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3368"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>338</b></td>
+            <td><b>Phải trả, phải nộp khác</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct338"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct338"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct338"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct338"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct338"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct338"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3381</td>
+            <td>Tài sản thừa chờ giải quyết</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3381"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3381"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3381"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3381"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3381"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3381"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3382</td>
+            <td>Kinh phí công đoàn</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3382"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3382"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3382"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3382"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3382"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3382"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3383</td>
+            <td>Bảo hiểm xã hội</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3383"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3383"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3383"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3383"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3383"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3383"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3384</td>
+            <td>Bảo hiểm y tế</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3384"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3384"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3384"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3384"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3384"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3384"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3385</td>
+            <td>Bảo hiểm thất nghiệp </td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3385"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3385"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3385"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3385"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3385"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3385"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3386</td>
+            <td>Nhận ký quỹ, ký cược</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3386"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3386"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3386"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3386"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3386"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3386"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3387</td>
+            <td>Doanh thu chưa thực hiện</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3387"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3387"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3387"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3387"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3387"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3387"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3388</td>
+            <td>Phải trả, phải nộp khác</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3388"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3388"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3388"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3388"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3388"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3388"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>341</b></td>
+            <td><b>Vay và nợ thuê tài chính</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct341"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct341"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct341"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct341"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct341"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct341"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3411</td>
+            <td>Các khoản đi vay </td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3411"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3411"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3411"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3411"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3411"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3411"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3412</td>
+            <td>Nợ thuê tài chính </td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3412"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3412"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3412"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3412"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3412"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3412"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>352</b></td>
+            <td><b>Dự phòng phải trả</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct352"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct352"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct352"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct352"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct352"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct352"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3521</td>
+            <td>Dự phòng bảo hành sản phẩm hàng hóa</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3521"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3521"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3521"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3521"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3521"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3521"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3522</td>
+            <td>Dự phòng bảo hành công trình xây dựng </td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3522"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3522"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3522"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3522"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3522"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3522"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3524</td>
+            <td>Dự phòng phải trả khác</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3524"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3524"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3524"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3524"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3524"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3524"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>353</b></td>
+            <td><b>Quỹ khen thưởng, phúc lợi</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct353"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct353"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct353"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct353"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct353"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct353"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3531</td>
+            <td>Quỹ khen thưởng</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3531"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3531"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3531"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3531"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3531"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3531"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3532</td>
+            <td>Quỹ phúc lợi</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3532"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3532"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3532"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3532"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3532"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3532"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3533</td>
+            <td>Quỹ phúc lợi đã hình thành TSCĐ</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3533"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3533"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3533"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3533"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3533"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3533"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3534</td>
+            <td>Quỹ thưởng ban quản lý điều hành công ty</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3534"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3534"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3534"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3534"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3534"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3534"/></td>
+        </tr>
+         <tr>
+            
+            <td class="align-c"><b>356</b></td>
+            <td><b>Quỹ phát triển khoa học và công nghệ</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct356"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct356"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct356"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct356"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct356"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct356"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3561</td>
+            <td>Quỹ phát triển khoa học và công nghệ</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3561"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3561"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3561"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3561"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3561"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3561"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">3562</td>
+            <td>Quỹ phát triển khoa học và công nghệ đã hình thành TSCĐ</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct3562"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct3562"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct3562"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct3562"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct3562"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct3562"/></td>
+        </tr>
+         <tr>
+            
+            <td class="align-c"><b></b></td>
+            <td class="align-c"><b>LOẠI TÀI KHOẢN VỐN CHỦ SỞ HỮU</b></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>411</b></td>
+            <td><b>Vốn đầu tư của chủ sở hữu</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct411"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct411"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct411"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct411"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct411"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct411"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">4111</td>
+            <td>Vốn đầu tư của chủ sở hữu </td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct4111"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct4111"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct4111"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct4111"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct4111"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct4111"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">4112</td>
+            <td>Thặng dư vốn cổ phần</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct4112"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct4112"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct4112"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct4112"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct4112"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct4112"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">4118</td>
+            <td>Vốn khác</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct4118"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct4118"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct4118"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct4118"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct4118"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct4118"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>413</b></td>
+            <td><b>Chênh lệch tỷ giá hối đoái</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct413"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct413"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct413"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct413"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct413"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct413"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>418</b></td>
+            <td><b>Các quỹ thuộc vốn chủ sở hữu</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct418"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct418"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct418"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct418"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct418"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct418"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>419</b></td>
+            <td><b>Cổ phiếu quỹ</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct419"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct419"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct419"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct419"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct419"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct419"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>421</b></td>
+            <td><b>Lợi nhuận sau thuế chưa phân phối</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct421"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct421"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct421"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct421"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct421"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct421"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">4211</td>
+            <td>Lợi nhuận chưa phân phối năm trước</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct4211"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct4211"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct4211"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct4211"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct4211"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct4211"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">4212</td>
+            <td>Lợi nhuận chưa phân phối năm nay</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct4212"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct4212"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct4212"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct4212"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct4212"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct4212"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b></b></td>
+            <td class="align-c"><b>LOẠI TÀI KHOẢN DOANH THU</b></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>511</b></td>
+            <td><b>Doanh thu bán hàng và cung cấp dịch vụ</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct511"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct511"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct511"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct511"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct511"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct511"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">5111</td>
+            <td>Doanh thu bán hàng hoá</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct5111"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct5111"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct5111"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct5111"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct5111"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct5111"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">5112</td>
+            <td>Doanh thu bán thành phẩm</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct5112"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct5112"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct5112"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct5112"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct5112"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct5112"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">5113</td>
+            <td>Doanh thu cung cấp dịch vụ</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct5113"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct5113"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct5113"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct5113"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct5113"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct5113"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">5118</td>
+            <td>Doanh thu khác</td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct5118"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct5118"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct5118"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct5118"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct5118"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct5118"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>515</b></td>
+            <td><b>Doanh thu hoạt động tài chính</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct515"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct515"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct515"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct515"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct515"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct515"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b></b></td>
+            <td class="align-c"><b>LOẠI TÀI KHOẢN CHI PHÍ SẢN XUẤT, KINH DOANH</b></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+        </tr>
+        
+        <tr>
+            
+            <td class="align-c"><b>611</b></td>
+            <td><b>Mua hàng</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct611"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct611"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct611"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct611"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct611"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct611"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>631</b></td>
+            <td><b>Giá thành sản xuất</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct631"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct631"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct631"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct631"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct631"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct631"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>632</b></td>
+            <td><b>Giá vốn hàng bán</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct632"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct632"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct632"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct632"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct632"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct632"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>635</b></td>
+            <td><b>Chi phí tài chính</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct635"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct635"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct635"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct635"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct635"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct635"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>642</b></td>
+            <td><b>Chi phí quản lý kinh doanh </b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct642"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct642"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct642"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct642"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct642"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct642"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">6421</td>
+            <td>Chi phí bán hàng </td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct6421"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct6421"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct6421"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct6421"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct6421"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct6421"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c">6422</td>
+            <td>Chi phí quản lý doanh nghiệp </td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct6422"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct6422"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct6422"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct6422"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct6422"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct6422"/></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b></b></td>
+            <td class="align-c"><b>LOẠI TÀI KHOẢN THU NHẬP KHÁC</b></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+        </tr>
+        
+        <tr>
+            
+            <td class="align-c"><b>711</b></td>
+            <td><b>Thu nhập khác</b> </td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct711"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct711"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct711"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct711"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct711"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct711"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b></b></td>
+            <td class="align-c"><b>LOẠI TÀI KHOẢN CHI PHÍ KHÁC</b></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>811</b></td>
+            <td><b>Chi phí khác</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct811"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct811"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct811"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct811"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct811"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct811"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>821</b></td>
+            <td><b>Chi phí thuế thu nhập doanh nghiệp</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct821"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct821"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct821"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct821"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct821"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct821"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b></b></td>
+            <td class="align-c"><b>TÀI KHOẢN XÁC ĐỊNH KẾT QUẢ KINH DOANH</b></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+            <td class="number align-r"></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b>911</b></td>
+            <td><b>Xác định kết quả kinh doanh</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/ct911"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/ct911"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/ct911"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/ct911"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/ct911"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/ct911"/></b></td>
+        </tr>
+        <tr>
+            
+            <td class="align-c"><b></b></td>
+            <td><b>Tổng cộng</b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/No/tongCong"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuDauKy/Co/tongCong"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/No/tongCong"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoPhatSinhTrongKy/Co/tongCong"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/No/tongCong"/></b></td>
+            <td class="align-r"><b class="number"><xsl:value-of select="$pluc04/SoDuCuoiKy/Co/tongCong"/></b></td>
+        </tr>
+        
+  
+ </table>
+ </div>	
+ </div>
+    <br/><br/>
+<table style="page-break-inside: avoid;width:100%" >
+<tr>
+<td>	  	
+<xsl:call-template name="tkhaiFooter-BCTC133">   
+</xsl:call-template>
+<div><i><b>Ghi chú:</b>Đối với trường hợp thuê dịch vụ làm kế toán, làm kế toán trưởng thì phải ghi rõ số Giấy chứng nhận đăng ký hành nghề dịch vụ kế toán, tên đơn vị cung cấp dịch vụ kế toán.</i></div>
+<div id="sigDiv"></div>
+</td>
+</tr>
+</table>
+</xsl:if>
+
+
+	</xsl:template>		
+</xsl:stylesheet>

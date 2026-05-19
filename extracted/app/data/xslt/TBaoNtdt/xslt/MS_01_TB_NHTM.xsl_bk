@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="/">
+    <style type="text/css">ol { margin: 0; padding: 0 }
+      #wrapper { background: none repeat scroll 0 0 #FFFFFF; min-height: 100%; margin: auto; padding: 40px; position: relative; width: 700px;}
+      #headermct { margin: auto; position: relative; width: 100%; }
+      #conten { float: left; margin: auto; position: relative; width: 100%; }
+      .ms09 { border: 1px solid; float: right; height: 19px; padding: 10px; position: relative; top: -13px; width: 185px; }
+      .table_hd { width: 100%; text-align: center; }
+      #headermct table td{ padding: 0px;}
+      .table_hr1 { margin-top: -8px; border-width: 1px thin; width: 105px; }
+      .table_hr2 { border-width: 1px thin; margin-top: 8px; width: 210px; }
+      .table_hr3 { border-width: 1px thin; margin-top: 8px; width: 150px; }
+      .c5 { width: 20pt; border-style: solid; border-color: #000000; border-width: 0.5pt; text-align: center; }
+      .c9 { width: 74.4pt; border-style: solid; border-color: #000000; border-width: 0.5pt; padding: 0pt 5.8pt 0pt 5.8pt }
+      .c8 { border-style: solid; border-color: #000000; border-width: 0pt; padding: 0pt 5.8pt 0pt 5.8pt }
+      .c20 { width: 54.2pt; border-style: solid; border-color: #000000; border-width: 0.5pt;  padding: 0pt 5.8pt 0pt 5.8pt  text-align: center;
+      }
+	   .c35 { width: 45pt; border-style: solid; border-color: #000000; border-width: 0.5pt; text-align: center; }
+    
+      .c13 { width: 233.7pt; border-style: solid; border-color: #000000; border-width: 0pt; padding: 0pt 5.8pt 0pt 5.8pt }
+      .c14 { width: 47.7pt; border-style: solid; border-color: #000000; border-width: 0.5pt; padding: 2px; }
+      .c22 { width: 233.6pt; border-style: solid; border-color: #000000; border-width: 0pt; padding: 0pt 5.8pt 0pt 5.8pt }
+      .c6 { width: 52.8pt; border-style: solid; border-color: #000000; border-width: 0.5pt; padding: 0pt 5.8pt 0pt 5.8pt }
+      .c21 { width: 140.4pt; border-style: solid; border-color: #000000; border-width: 0.5pt;  padding: 0pt 5.8pt 0pt 5.8pt  text-align: center;
+      }
+      .c26 { width: 140pt; border-style: solid; border-color: #000000; border-width: 0pt; }
+      .c7 { width: 97.1pt; border-style: solid; border-color: #000000; border-width: 0.5pt; padding: 0pt 5.8pt 0pt 5.8pt }
+      .c2 { line-height: 1.5; padding-top: 6pt; height: 11pt; direction: ltr; padding-bottom: 0pt }
+      .c3 { line-height: 1.5; padding-top: 6pt; direction: ltr; padding-bottom: 0pt }
+      .c19 { height: 11pt; direction: ltr }
+      .c10 { height: 28pt }
+      .c1 { font-size: 13px }
+      .c18 { height: 22pt; }
+      .c15 { font-size: 14px }
+      .c4 { font-weight: bold }
+      .c0 { font-size: 15px }
+      .c25 { height: 0pt }
+      .c11 { text-align: center }
+      .c23 { font-style: italic }
+      .c12 { height: 27pt; line-height: 40px; }
+      .title { padding-top: 24pt; line-height: 1.1500000000000001; text-align: left; color: #000000; font-size: 36px;  font-weight: bold; padding-bottom: 6pt }
+      .subtitle { padding-top: 18pt; line-height: 1.1500000000000001; text-align: left; color: #666666; font-style: italic; font-size: 24px;  padding-bottom: 4pt }
+      
+      #conten .table_hd1 { border-collapse: collapse; border-color: #000000; float: left; margin-top: 10px; position: relative; width: 100%; color: #404040;}
+      #conten .table_hd1 tr { border-collapse: collapse; border-color: #000000;  }
+      #conten .table_hd1 td { border-collapse: collapse; border-color: #000000;  }
+      .contenms9 {  font-size: 13px; }
+      .tb_strong { align: center; }</style>
+        <xsl:for-each select="TBAO_TKHOAN_NH">
+        <xsl:variable name="TBAO_TKHOAN_NH" select="." />
+        <xsl:for-each select="$TBAO_TKHOAN_NH">
+		
+		     
+          <div id="headermct">
+            <p class="c2">&#160;</p>
+            <div class="ms09">
+              <span>Mẫu số:dfsdfsdfsd
+                <!--<xsl:if test="MAU_TBAO !=''">
+                  <span>
+                    <xsl:value-of select="MAU_TBAO"/>
+                  </span>
+                </xsl:if>-->
+				04/TB-TDT
+              </span>
+            </div>
+            <table cellpadding="0" cellspacing="0" class="table_hd">
+              <tbody>
+                <tr class="c18 align-c">
+                  <td class="c26 align-c">
+                    <span class="c1 c4 c0">NGÂN HÀNG
+                      <xsl:if test="MA_NHANG !=''">
+                        <span>
+                          <xsl:value-of select="MA_NHANG"/>
+                        </span>
+                      </xsl:if>
+                    </span>
+                  </td>
+                  <td class="c8 align-c">
+                    <span class="c1 c4 c0">CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM</span>
+                  </td>
+                </tr>
+                <tr class="c18 ">
+                  <td class="align-c">
+                    <hr class="table_hr1"/>
+                  </td>
+                  <td class="align-c">
+                    <span class="c1 c4 c0 ">Độc lập - Tự do - Hạnh phúc</span>
+                    <hr class="table_hr2"/>
+                  </td>
+                </tr>
+                <tr class="c12">
+                  <td class="c26 align-c">
+                    <span class="c1 c15">Số:
+                      <span class="contenms9">&#160;</span>
+                      <xsl:if test="SO_TBAO !=''">
+                        <span>
+                          <xsl:value-of select="SO_TBAO"/>
+                        </span>
+                      </xsl:if>
+                      /TB-NHTM</span>
+                  </td>
+                  <td class="c8 align-c">
+                    <span class="contenms9" id="ngaythang" hidden="true" style="display: none;">
+                      <xsl:if test="NGAY_TBAO !=''">
+                        <xsl:value-of select="NGAY_TBAO"/>
+                      </xsl:if>
+                    </span>
+                    <span class="c1 c0" id="ngay_thang">Ngày......tháng..... năm.....</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="c2 c11">&#160;</p>
+            <p class="c3 c11">
+              <span class="c1 c4 c0">THÔNG BÁO</span>
+            </p>
+            <p class="c3 c11">
+              <span class="c1 c0 c4">V/v Chấp nhận đăng ký sử dụng dịch vụ nộp thuế điện tử qua NHTM</span>
+            </p>
+            <hr class="table_hr3" />
+            <p class="c2 c11">&#160;</p>
+            <p class="c3">
+              <span class="c1 c0">
+                <strong class="tb_strong">Kính gửi:</strong>
+              </span>
+              &#160;&#160;
+              <span class="c1 c0 c23">
+                <xsl:if test="TEN_NNT !=''">
+                  <xsl:value-of select="TEN_NNT"/>
+                </xsl:if>
+              </span>
+            </p>
+            <p class="c0" style="margin-left: 62px;">Mã số thuế của NNT: &#160;
+              <span class="c1 c0">
+                <xsl:if test="MST !=''">
+                  <xsl:value-of select="MST"/>
+                </xsl:if>
+              </span>
+            </p>
+            <p class="c3 c1">Vào&#160;
+              <span class="c1 c23" id="hpgiayngaythang">...giờ ... phút ... giây , ngày DD/MM/YYYY</span>
+              <span class="c1">NNT đã được Ngân hàng
+                <xsl:if test="TEN_NHANG !=''">
+                  <span>
+                    <xsl:value-of select="TEN_NHANG"/>
+                  </span>
+                </xsl:if>
+                chấp nhận sử dụng dịch vụ nộp thuế điện tử.</span>
+            </p>
+          </div>
+          <div id="conten">
+            <p class="c2 c11">&#160;</p>
+            <table cellpadding="0" cellspacing="0" class="table_hd1 c1">
+              <tr>
+                <td>- Thông tin chi tiết như sau:</td>
+              </tr>
+              <tr>
+                <td>&#160;&#160;&#160;&#160;- Điện thoại:
+                  <xsl:if test="SDT_NNT !=''">
+                    <span>
+                      <xsl:value-of select="SDT_NNT"/>
+                    </span>
+                  </xsl:if>
+                </td>
+              </tr>
+              <tr>
+                <td>&#160;&#160;&#160;&#160;- Địa chỉ thư điện tử:
+                  <xsl:if test="EMAIL_NNT !=''">
+                    <span>
+                      <xsl:value-of select="EMAIL_NNT"/>
+                    </span>
+                  </xsl:if>
+                </td>
+              </tr>
+              <tr>
+                <td>&#160;&#160;&#160;&#160;- Số xê-ri chứng thư số:
+                  <xsl:if test="SERIAL_CERT_NTHUE !=''">
+                    <span>
+                      <xsl:value-of select="SERIAL_CERT_NTHUE"/>
+                    </span>
+                  </xsl:if>
+                </td>
+              </tr>
+              <tr>
+              <td>&#160;&#160;&#160;&#160;- Chủ thể chứng thư số:
+                  <xsl:if test="SUBJECT_CERT_NTHUE !=''">
+                    <span>
+                      <xsl:value-of select="SUBJECT_CERT_NTHUE"/>
+                    </span>
+                  </xsl:if>
+                </td>
+              </tr>
+              <tr>
+                <td>&#160;&#160;&#160;&#160;- Tên tổ chức cung cấp chứng thư số:
+                <xsl:if test="ISSUER_CERT_NTHUE !=''">
+                    <span>
+                      <xsl:value-of select="ISSUER_CERT_NTHUE"/>
+                    </span>
+                  </xsl:if>
+                </td>
+              </tr>
+              <tr>
+                <td>&#160;&#160;&#160;&#160;- Thực hiện nộp thuế điện tử qua Ngân hàng :
+                  <xsl:if test="TEN_NHANG !=''">
+                    <span>
+                      <xsl:value-of select="TEN_NHANG"/>
+                    </span>
+                  </xsl:if>
+                </td>
+              </tr>
+              <tr>
+                <td>- Số tài khoản sử dụng dịch vụ NTĐT:</td>
+              </tr>
+              <xsl:for-each select="$TBAO_TKHOAN_NH/TTIN_TKHOAN/STK">
+                <tr>
+                  <td>&#160;&#160;&#160;&#160;
+                    <xsl:if test="$TBAO_TKHOAN_NH/TTIN_TKHOAN/STK !=''">
+                      <span>-
+                        <xsl:value-of select="."/>
+                      </span>
+                    </xsl:if>
+                  </td>
+                </tr>
+              </xsl:for-each>
+            </table>
+			
+	
+          <p class="c2 c11">&#160;</p>
+		   <p class="c3">
+			  <span class="c1 ">Thông tin tài khoản, chứng thư số đưng ký thủ tục nộp thuế điện tử:</span>
+		    </p>
+          <table cellpadding="0" cellspacing="0" class="table_hd">
+            <tbody id="msthongbao09">
+              <tr>
+                <td class="c35" style="text-align: center !important">
+                  <strong class="tb_strong">STT</strong>
+                </td>
+                <td class="c14" style="text-align: center !important">
+                  <strong class="tb_strong">Số tài khoản sử dụng dịch vụ NTĐT</strong>
+                </td>
+                <td class="c21" style="text-align: center !important">
+                  <strong class="tb_strong">Tên chủ tài khoản</strong>
+                </td>
+                <td class="c14" style="text-align: center !important">
+                  <strong class="tb_strong">Tên tổ chức chứng thực chữ ký số</strong>
+                </td>
+                 <td class="c21" style="text-align: center !important">
+                  <strong class="tb_strong">Số sê-ri chứng thư số</strong>
+                </td>
+				   <!--   <td class="c14" style="text-align: center !important">
+                  <strong class="tb_strong">Chủ thể chứng thư số</strong>
+                </td>-->
+                <td class="c14" style="text-align: center !important" colspan="2">
+                  <strong class="tb_strong">Thời hạn sử dụng chứng thư số</strong>
+                </td>
+            
+              </tr>
+			  
+			         <xsl:for-each select="$TBAO_TKHOAN_NH/TTIN_TKHOAN/STK">
+                <tr  class="c12">
+				
+				  <td class="c35" style="height:23px;text-align: center;">
+
+                    <xsl:number/>
+                   
+                  </td>  
+				  
+                  <td class="c14"  style="height:23px;text-align: center;" >
+                    <xsl:if test="$TBAO_TKHOAN_NH/TTIN_TKHOAN/STK !=''">
+                      <span>
+                        <xsl:value-of select="."/>
+                      </span>
+                    </xsl:if>
+                  </td>
+				  
+				 
+				  
+				    <td  class="c21" style="height:23px;text-align: left;">
+                    <span class="contenms9">
+                  <xsl:if test="$TBAO_TKHOAN_NH/SUBJECT_CERT_NTHUE !=''">
+                    <span>
+                      <xsl:value-of select="$TBAO_TKHOAN_NH/SUBJECT_CERT_NTHUE"/>
+                    </span>
+                  </xsl:if>
+				  </span>
+                </td>
+				  <td  class="c14"  style="height:23px;text-align: right;">
+                    <span class="contenms9">
+				    <xsl:if test="$TBAO_TKHOAN_NH/ISSUER_CERT_NTHUE !=''">
+                    <span>
+                      <xsl:value-of select="$TBAO_TKHOAN_NH/ISSUER_CERT_NTHUE"/>
+                    </span>
+                  </xsl:if>
+				  </span>
+				  </td>
+				 <td  class="c21"  style="height:23px;text-align: right;">
+                    <span class="contenms9">
+                   <xsl:if test="$TBAO_TKHOAN_NH/SERIAL_CERT_NTHUE !=''">
+                    <span>
+                      <xsl:value-of select="$TBAO_TKHOAN_NH/SERIAL_CERT_NTHUE"/>
+                    </span>
+                  </xsl:if>
+				  </span>
+                </td>
+				<!--
+				 <td class="c14"  style="height:23px;text-align: right;">
+                    <span class="contenms9">
+                                <xsl:if test="$TBAO_TKHOAN_NH/SUBJECT_CERT_NTHUE !=''">
+                        <xsl:value-of select="$TBAO_TKHOAN_NH/SUBJECT_CERT_NTHUE"/>
+                      </xsl:if>
+				  </span>
+                </td>-->
+				
+				 <td class="c14"  style="height:23px;text-align: right;">
+                    <span class="contenms9">
+                    
+				  </span>
+                </td>
+					 <td class="c14"  style="height:23px;text-align: right;">
+                    <span class="contenms9">
+                          
+                    
+				  </span>
+                </td>
+                </tr>
+              </xsl:for-each>
+			      </tbody>
+</table>
+
+
+       <p class="c2 c11">&#160;</p>
+             <p class="c3">
+			  <span class="c1 ">Địa chỉ thư điện tử để nhận thông báo, phản hồi của Ngân Hàng</span>
+		    </p>
+			      <table cellpadding="0" cellspacing="0" class="table_hd">
+            <tbody id="msthongbao09">
+              <tr >
+              <td class="c5" style="text-align: center !important">
+                  <strong class="tb_strong">STT</strong>
+                </td>
+                <td class="c14" style="text-align: center !important">
+                  <strong class="tb_strong">Địa chỉ thư điện tử</strong>
+                </td>
+				  <td class="c21" style="text-align: center !important">
+                  <strong class="tb_strong">Họ tên người sử dụng</strong>
+                </td>
+                <td class="c14" style="text-align: center !important">
+                  <strong class="tb_strong">Ghi chú</strong>
+                </td>
+
+              </tr>
+			  
+			       
+                <tr class="c12">
+				
+				  <td class="c5"  style="text-align: center !important">
+                  
+                    <xsl:number/>
+                  
+                  </td>  
+				  
+				  <td class="c14" style="height:23px;text-align: left;">
+                  <xsl:if test="EMAIL_NNT !=''">
+                    <span>
+                      <xsl:value-of select="EMAIL_NNT"/>
+                    </span>
+                  </xsl:if>
+				  </td>
+				
+				
+				 <td class="c21" style="height:23px;text-align: left;">
+				    <xsl:if test="TEN_LHE_NTHUE !=''">
+                    <span class="contenms9">
+                            <xsl:value-of select="TEN_LHE_NTHUE"/>     
+				  </span>
+				     </xsl:if>
+                </td>
+				
+				
+				
+					 <td class="c14" style="height:23px;text-align: left;">
+                    <span class="contenms9">
+                              
+				     </span>
+                    </td>
+                </tr>
+       
+			      </tbody>
+</table>
+   <p class="c2 c11">&#160;</p>
+            <p class="c3">
+              <span class="c1 ">Để sử dụng dịch vụ NNT truy cập theo đường dẫn:&#160;</span>
+			   <xsl:if test="SDT_NNT !=''">
+                    <span>
+                      <xsl:value-of select="SDT_NNT"/>
+                    </span>
+                  </xsl:if>
+		    </p>
+            <p class="c2 c11">&#160;</p>
+            <p class="c3">
+              <span class="c1 ">Để sử dụng dịch vụ NNT truy cập theo đường dẫn:&#160;</span>
+              <span class="c1 c0 c23">
+                <a href="http://nopthue.gdt.gov.vn">http://nopthue.gdt.gov.vn</a>
+              </span>
+              <span class="c1 c0">.</span>
+            </p>
+            <p class="c3">
+              <span class="c1 ">Ngân hàng&#160;
+                <xsl:if test="TEN_NHANG !=''">
+                  <span>
+                    <xsl:value-of select="TEN_NHANG"/>
+                  </span>
+                </xsl:if>
+                thông báo để NNT biết, thực hiện./.</span>
+            </p>
+          </div>
+          <div style="clear: both;">&#160;</div>
+        </xsl:for-each>
+      </xsl:for-each>   
+ 	  
+  </xsl:template>
+</xsl:stylesheet>

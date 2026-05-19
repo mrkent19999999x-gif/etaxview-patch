@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 rel. 3 (http://www.altova.com) by MESMERiZE (MSM) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://kekhaithue.gdt.gov.vn/DanhMucVan" targetNamespace="http://kekhaithue.gdt.gov.vn/DanhMucVan" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:element name="DMucHSoDKy">
+		<xs:annotation>
+			<xs:documentation>Phần tử gốc</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DKyThueDTu" type="TBaoType" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Toàn bộ thông tin thông báo</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="TBaoType">
+		<xs:sequence>
+			<xs:element name="XMLSchema" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Đường dẫn tới tệp XML Schema</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="XSLT" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Đường dẫn tới tệp XSLT</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExcelTemplate" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Đường dẫn tới tệp mẫu Excel</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DSachPLuc" type="DSachPLucType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Thông tin về các phụ lục</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="maDKy" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Mã tờ khai</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pBanDKy" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Phiên bản tờ khai</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="viewMethod" type="xs:string" default="1">
+			<xs:annotation>
+				<xs:documentation>Định dạng xem dữ liệu (1=HTML; 2=Excel; 3=Word)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="orientation" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation>Kiểu trang giấy in (0=A4 ngang; 1=A4 dọc)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="DSachPLucType">
+		<xs:sequence>
+			<xs:element name="PLuc" type="PLucType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Thông tin về phụ lục</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PLucType">
+		<xs:sequence>
+			<xs:element name="TenPLuc" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Tên phụ lục</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PLucXSLT" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Đường dẫn tới tệp XSLT</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PLucExcelTemplate" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Đường dẫn tới tệp mẫu Excel</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="plucID" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Định danh phụ lục</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="plucViewMethod" type="xs:string" default="1">
+			<xs:annotation>
+				<xs:documentation>Định dạng xem dữ liệu (1=HTML; 2=Excel; 3=Word)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="plucOrientation" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation>Kiểu trang giấy in (0=A4 ngang; 1=A4 dọc)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

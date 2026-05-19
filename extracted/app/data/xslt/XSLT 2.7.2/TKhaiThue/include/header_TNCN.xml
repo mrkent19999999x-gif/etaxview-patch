@@ -1,0 +1,369 @@
+
+	<!-- start header 06_TNCN (TT80/2021)-->
+	<xsl:template name="tkhaiHeader_06_TNCN_TT80">
+		<xsl:param name="mauTKhai"/>
+		<xsl:param name="moTaBieuMau"/>
+		<xsl:param name="ghuchuTK"/>
+		<div class="header_div">
+			<table class="ttinnnt_table">
+				<tr>
+					<td style="width:80%;text-align:center">
+						<b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br/>Độc lập-Tự do-Hạnh phúc</b>
+						<br/>-------------------------
+            </td>
+					<td style="width:17% ; vertical-align: top;" rowSpan="5" align="top">
+						<div class="bieu_mau_div">
+							<div>Mẫu số: <b>
+									<xsl:value-of select="$mauTKhai"/>
+								</b>
+								<br/>
+								<span class="mtatentkhai" style="font-size:9pt">(
+                            <xsl:value-of select="$moTaBieuMau"/>
+                            ) </span>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="tentkhai">
+						<xsl:value-of select="translate($ttkthue/TKhaiThue/tenTKhai,$smallcase,$uppercase)"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="mtatentkhai">
+						<div style="width:80% ">
+							<xsl:value-of select="$ghuchuTK"/>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="align-c">
+						<b>[01]</b> Kỳ tính thuế: <xsl:value-of select="ihtkk:kyTinhThue($kyKKhai,$kieuKy,$ttkthue/TKhaiThue/KyKKhaiThue/kyKKhaiTuNgay,$ttkthue/TKhaiThue/KyKKhaiThue/kyKKhaiDenNgay)"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="align-c">
+						<xsl:if test="$ttkthue/TKhaiThue/loaiTKhai='C'">
+							<b>[02]</b> Lần đầu: [X] <b>[03] </b>Bổ sung lần thứ: [&#32;]    
+                        </xsl:if>
+						<xsl:if test="$ttkthue/TKhaiThue/loaiTKhai='B'">
+							<b>[02]</b> Lần đầu: [&#32;] <b>[03] </b>Bổ sung lần thứ: [<xsl:value-of select="$ttkthue/TKhaiThue/soLan"/>]    
+                        </xsl:if>
+					</td>
+				</tr>
+			</table>
+			<br/>
+			<table class="ttinnnt_table">
+				<tr>
+					<td colspan="3">
+						<b>[04] Tên người nộp thuế</b>: <xsl:value-of select="$ttkthue/NNT/tenNNT"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<b>[05] </b>Mã số thuế: 
+						<xsl:value-of select="$ttkthue/NNT/mst"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>[06] </b> Địa chỉ: <xsl:value-of select="$ttkthue/NNT/dchiNNT"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>[07]</b> Quận/Huyện: <xsl:value-of select="$ttkthue/NNT/tenHuyenNNT"/>
+					</td>
+					<td colspan="2">
+						<b>[08]</b> Tỉnh/Thành phố: <xsl:value-of select="$ttkthue/NNT/tenTinhNNT"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>[09] </b> Điện thoại: <xsl:value-of select="$ttkthue/NNT/dthoaiNNT"/>
+					</td>
+					<td>
+						<b>[10] </b>Fax: <xsl:value-of select="$ttkthue/NNT/faxNNT"/>
+					</td>
+					<td>
+						<b>[11]</b> E-mail: <xsl:value-of select="$ttkthue/NNT/emailNNT"/>
+					</td>
+				
+				</tr>
+				<tr>
+					<td><b>[12] Tên tổ chức khai thay (nếu  có):</b> <xsl:value-of select="$tkchinh/Header/ct12"/></td>
+				</tr>
+				<tr>
+				<td colspan="3">
+							<b>[13] </b>Mã số thuế: 
+						 <xsl:value-of select="$tkchinh/Header/ct13"/></td>
+				</tr>
+					<tr colspan="3">
+						<td>
+							<b>[14]</b> Địa chỉ: <xsl:value-of select="$tkchinh/Header/ct14"/>
+                        </td>
+					</tr>
+					<tr>
+						<td>
+							<b>[15]</b> Quận/Huyện: <xsl:value-of select="$tkchinh/Header/ct15_ten"/>
+                        </td>
+						<td colspan="2">
+							<b>[16]</b>Tỉnh/Thành phố:  <xsl:value-of select="$tkchinh/Header/ct16_ten"/>
+                        </td>
+					</tr>
+					<tr>
+						<td>
+							<b>[17] </b>Điện thoại: <xsl:value-of select="$tkchinh/Header/ct17"/>
+                        </td>
+						<td>
+							<b>[18] </b>Fax: <xsl:value-of select="$tkchinh/Header/ct18"/>
+                        </td>
+						<td>
+							<b>[19]</b> E-mail: <xsl:value-of select="$tkchinh/Header/ct19"/>
+                        </td>
+					</tr>
+					<xsl:if test="$ttkthue/DLyThue">
+						<tr>
+							<td><b>[20] Tên đại lý thuế (nếu có):</b><xsl:value-of select="$ttkthue/DLyThue/tenDLythue"/></td>
+						</tr>
+						<tr>
+							<td><b>[21]</b> Mã số thuế: <xsl:value-of select="$ttkthue/DLyThue/mstDLyThue"/></td>
+						</tr>
+						<tr>
+							<td><b>[22] </b> Hợp đồng đại lý thuế: Số  <xsl:value-of select="$ttkthue/DLyThue/soHDongDLyThue"/></td>
+							<td colspan="2"> Ngày: <xsl:value-of select="ihtkk:stringDatetime($ngayKyHDDLyThue,'dd/mm/yyyy')"/></td>
+						</tr>
+					</xsl:if>
+					<xsl:if test="not($ttkthue/DLyThue)">
+						<tr>
+							<td><b>[20] Tên đại lý thuế (nếu có):</b></td>
+						</tr>
+						<tr>
+							<td><b>[21]</b> Mã số thuế: </td>
+						</tr>
+						<tr>
+							<td><b>[22] </b> Hợp đồng đại lý thuế: Số  </td>
+							<td colspan="2"> Ngày: </td>
+						</tr>
+					</xsl:if>
+			</table>
+		</div>
+	</xsl:template>
+	
+	<!-- start header PL 06-1/BK-TNCN (TT80/2021)-->
+	<xsl:template name="tkhaiHeader_PL_06_1_BK_TNCN">
+		<xsl:param name="mauTKhai"/>
+		<xsl:param name="moTaBieuMau"/>
+		<xsl:param name="tKhai"/>
+		<xsl:param name="tenPL"/>
+		<xsl:param name="ghiChuPL"/>
+		<div class="header_div">
+			<table>
+				<xsl:call-template name="BieuNguPhuLuc">
+					<xsl:with-param name="mauTKhai_" select="$mauTKhai"/>
+					<xsl:with-param name="moTaBieuMau_" select="$moTaBieuMau"/>
+					<xsl:with-param name="tenPL_" select="$tenPL"/>
+					<xsl:with-param name="ghiChuPL_" select="$ghiChuPL"/>
+				</xsl:call-template>
+				<tr>
+					<td class="align-c">
+						<b>[01]</b> Kỳ tính thuế: <xsl:value-of select="ihtkk:kyTinhThue($kyKKhai,$kieuKy,$ttkthue/TKhaiThue/KyKKhaiThue/kyKKhaiTuNgay,$ttkthue/TKhaiThue/KyKKhaiThue/kyKKhaiDenNgay)"/>
+					</td>
+				</tr>				
+				<tr>
+					<td class="align-c">
+						<xsl:if test="$ttkthue/TKhaiThue/loaiTKhai='C'">
+							<b>[02]</b> Lần đầu: [X] <b>[03] </b>Bổ sung  lần thứ: [&#32;]    
+                        </xsl:if>
+						<xsl:if test="$ttkthue/TKhaiThue/loaiTKhai='B'">
+							<b>[02]</b> Lần đầu: [&#32;] <b>[03] </b>Bổ sung lần thứ: [<xsl:value-of select="$ttkthue/TKhaiThue/soLan"/>]    
+                        </xsl:if>
+					</td>
+				</tr>
+			</table>
+			<table class="ttinnnt_table"  width="100%">
+				<br></br>
+				<tr>
+					<td colspan="3">
+						<b>[04] Tên người nộp thuế: </b><xsl:value-of select="$ttkthue/NNT/tenNNT"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<b>[05] </b>Mã số thuế: 
+							<xsl:value-of select="$ttkthue/NNT/mst"/>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</xsl:template>
+	<!-- start header 05_KK_TNCN (TT80/2021)-->
+	<xsl:template name="tkhaiHeader_05_KK_TNCN_TT80">
+		<xsl:param name="mauTKhai"/>
+		<xsl:param name="moTaBieuMau"/>
+		<xsl:param name="ghuchuTK"/>
+		<div class="header_div">
+			<table>
+				<xsl:call-template name="BieuNguDatNuoc">
+					<xsl:with-param name="mauTKhai_" select="$mauTKhai"/>
+					<xsl:with-param name="moTaBieuMau_" select="$moTaBieuMau"/>
+					<xsl:with-param name="ttkthue_" select="$ttkthue"/>
+					<xsl:with-param name="ghuchuTK_" select="$ghuchuTK"/>
+				</xsl:call-template>
+				<tr>
+					<td class="align-c">
+						<b>[01]</b> Kỳ tính thuế: <xsl:value-of select="ihtkk:kyTinhThue($kyKKhai,$kieuKy,$ttkthue/TKhaiThue/KyKKhaiThue/kyKKhaiTuNgay,$ttkthue/TKhaiThue/KyKKhaiThue/kyKKhaiDenNgay)"/>
+					</td>
+				</tr>				
+				<tr>
+					<td class="align-c">
+						<xsl:if test="$ttkthue/TKhaiThue/loaiTKhai='C'">
+							<b>[02]</b> Lần đầu: [X] <b>[03] </b>Bổ sung  lần thứ: [&#32;]    
+                        </xsl:if>
+						<xsl:if test="$ttkthue/TKhaiThue/loaiTKhai='B'">
+							<b>[02]</b> Lần đầu: [&#32;] <b>[03] </b>Bổ sung lần thứ: [<xsl:value-of select="$ttkthue/TKhaiThue/soLan"/>]    
+                        </xsl:if>
+					</td>
+				</tr>
+			</table>
+			<table class="ttinnnt_table"  width="100%">
+				<br></br>
+				<tr>
+					<td colspan="3">
+						<b>[04] Tên người nộp thuế: </b><xsl:value-of select="$ttkthue/NNT/tenNNT"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<b>[05] </b>Mã số thuế: 
+							<xsl:value-of select="$ttkthue/NNT/mst"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>[06] </b> Địa chỉ: <xsl:value-of select="$ttkthue/NNT/dchiNNT"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>[07]</b> Quận/Huyện: <xsl:value-of select="$ttkthue/NNT/tenHuyenNNT"/>
+					</td>
+					<td colspan="2">
+						<b>[08]</b> Tỉnh/Thành phố: <xsl:value-of select="$ttkthue/NNT/tenTinhNNT"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>[09] </b> Điện thoại: <xsl:value-of select="$ttkthue/NNT/dthoaiNNT"/>
+					</td>
+					<td>
+						<b>[10] </b>Fax: <xsl:value-of select="$ttkthue/NNT/faxNNT"/>
+					</td>
+					<td>
+						<b>[11]</b> E-mail: <xsl:value-of select="$ttkthue/NNT/emailNNT"/>
+					</td>
+				</tr>
+				<xsl:if test="$ttkthue/DLyThue">
+					<tr>
+						<td colspan="3">
+							<b>[12] Tên đại lý thuế (nếu có): </b>
+								<xsl:value-of select="$ttkthue/DLyThue/tenDLyThue"/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<b>[13] </b> Mã số thuế:
+								<xsl:value-of select="$ttkthue/DLyThue/mstDLyThue"/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<b>[14] </b> Hợp đồng đại lý thuế: Số  <xsl:value-of select="$ttkthue/DLyThue/soHDongDLyThue"/>
+						</td>
+						<td > Ngày: <xsl:value-of select="ihtkk:stringDatetime($ngayKyHDDLyThue,'dd/mm/yyyy')"/>
+						</td>
+					</tr>
+				</xsl:if>
+				<xsl:if test="not($ttkthue/DLyThue)">
+					<tr>
+						<td colspan="3">
+							<b>[12] Tên đại lý thuế (nếu có): </b>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<b>[13] </b>Mã số thuế: 
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<b>[14] </b> Hợp đồng đại lý thuế: Số  
+                        </td>
+						<td> Ngày:
+                        </td>
+					</tr>
+				</xsl:if>
+				<tr>
+					<td colspan="3"> 
+						<b>[15] </b> Phân bổ thuế do có đơn vị hạch toán phụ thuộc tại địa bàn cấp tỉnh khác nơi có trụ sở chính: 
+						<xsl:if test="$tkchinh/ct15= 'true'"> [X] 
+						</xsl:if>
+						<xsl:if test="$tkchinh/ct15= '1'"> [X] 
+						</xsl:if>
+						<xsl:if test="$tkchinh/ct15= 'false'"> [&#32;] 
+						</xsl:if>
+						<xsl:if test="$tkchinh/ct15= '0'"> [&#32;] 
+						</xsl:if>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</xsl:template>
+	
+	<!-- start header PL 05-1/PBT-KK-TNCN (TT80/2021)-->
+	<xsl:template name="tkhaiHeader_PLuc_05_1_PBT_KK_TNCN_TT80">
+		<xsl:param name="mauTKhai"/>
+		<xsl:param name="moTaBieuMau"/>
+		<xsl:param name="tKhai"/>
+		<xsl:param name="tenPL"/>
+		<xsl:param name="ghiChuPL"/>
+		<div class="header_div">
+			<table>
+				<xsl:call-template name="BieuNguPhuLuc">
+					<xsl:with-param name="mauTKhai_" select="$mauTKhai"/>
+					<xsl:with-param name="moTaBieuMau_" select="$moTaBieuMau"/>
+					<xsl:with-param name="tenPL_" select="$tenPL"/>
+					<xsl:with-param name="ghiChuPL_" select="$ghiChuPL"/>
+				</xsl:call-template>
+				<tr>
+					<td class="align-c">
+						<b>[01]</b> Kỳ tính thuế: <xsl:value-of select="ihtkk:kyTinhThue($kyKKhai,$kieuKy,$ttkthue/TKhaiThue/KyKKhaiThue/kyKKhaiTuNgay,$ttkthue/TKhaiThue/KyKKhaiThue/kyKKhaiDenNgay)"/>
+					</td>
+				</tr>				
+				<tr>
+					<td class="align-c">
+						<xsl:if test="$ttkthue/TKhaiThue/loaiTKhai='C'">
+							<b>[01a]</b> Lần đầu: [X] <b>[01b] </b>Bổ sung  lần thứ: [&#32;]    
+                        </xsl:if>
+						<xsl:if test="$ttkthue/TKhaiThue/loaiTKhai='B'">
+							<b>[01a]</b> Lần đầu: [&#32;] <b>[01b] </b>Bổ sung lần thứ: [<xsl:value-of select="$ttkthue/TKhaiThue/soLan"/>]    
+                        </xsl:if>
+					</td>
+				</tr>
+			</table>
+			<table class="ttinnnt_table"  width="100%">
+				<br></br>
+				<tr>
+					<td colspan="3">
+						<b>[02] Tên người nộp thuế: </b><xsl:value-of select="$ttkthue/NNT/tenNNT"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<b>[03] </b>Mã số thuế: 
+							<xsl:value-of select="$ttkthue/NNT/mst"/>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</xsl:template>

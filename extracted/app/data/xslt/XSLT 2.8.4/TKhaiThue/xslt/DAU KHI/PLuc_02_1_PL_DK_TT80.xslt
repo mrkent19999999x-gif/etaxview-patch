@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ihtkk="http://www.nhantokhai.gdt.gov.vn/xslt">
+<xsl:include href="../../include/TKhaiHeader.xsl"/>
+ <xsl:include href="../../include/TKhaiFooter.xsl"/>    
+  <xsl:include href="../../common/common.xsl"/>
+	<xsl:template match="/">
+	<xsl:variable name="tkchinh" select='HSoThueDTu/HSoKhaiThue/CTieuTKhaiChinh' />
+	<xsl:variable name="moTaBieuMau" select="'Ban hành kèm theo Thông tư số 80/2021/TT-BTC ngày 29 tháng 9 năm 2021 của Bộ trưởng Bộ Tài chính'" />
+	<xsl:variable name="ghiChuPL" select="''"/>
+
+		<xsl:if test="HSoThueDTu/HSoKhaiThue/PLuc/PLuc_02_1_PL_DK">	
+			<xsl:variable name="PLuc_02_1_PL_DK" select='HSoThueDTu/HSoKhaiThue/PLuc/PLuc_02_1_PL_DK' />
+			<xsl:call-template name="tkhaiHeader-pl02-1dk">
+		<xsl:with-param name="mauTKhai"   select="'02-1/PL-DK'"/>
+		<xsl:with-param name="moTaBieuMau"   select="$moTaBieuMau"/>
+		<xsl:with-param name="tenPL"   select="'PHÂN CHIA TIỀN DẦU, KHÍ XUẤT BÁN'"/>
+		<xsl:with-param name="tenPL1"   select="''"/>
+		<xsl:with-param name="ghiChuPL"   select="'(Kèm theo các tờ khai thuế đối với dầu khí mẫu số 02/LNCN-PSC, 02/LNCN-VSP)'"/>
+	  </xsl:call-template>			
+					<div class="ndungtkhai_div">	
+					<div class="content">
+						<table class="tkhai_table">
+							 <tr>
+							   <td rowspan="2" class="align-c"><b>STT</b></td>
+							   <td rowspan="2" class="align-c"><b>Ngày xuất bán</b></td>
+							   <td colspan="2" class="align-c"><b>Sản lượng xuất bán</b></td>
+							   <td rowspan="2" class="align-c"><b>Giá bán (USD/thùng)</b></td>
+							   <td rowspan="2" class="align-c"><b>Chi phí thu hồi</b></td>
+							   <td colspan="4" class="align-c"><b>Các khoản thuế</b></td>
+							   <td rowspan="2" class="align-c"><b>Chi phí được trừ khác</b></td>
+							   <td rowspan="2" class="align-c"><b>Lãi dầu, khí</b></td>
+							   <td colspan="3" class="align-c"><b>Lãi dầu, khí NCN được chia</b></td>
+							 </tr>
+							 <tr>
+								<td class="align-c"><b>Thùng/BTU</b></td>
+								<td class="align-c"><b>Tấn/m3 </b></td>
+								<td class="align-c"><b>Tài nguyên</b></td>
+								<td class="align-c"><b>Xuất khẩu/ đặc biệt </b></td>
+								<td class="align-c"><b>Phụ thu dầu lãi </b></td>
+								<td class="align-c"><b>Thuế TNDN </b></td>
+								<td class="align-c"><b>Tổng </b></td>
+								<td class="align-c"><b>Nộp NSNN </b></td>
+								<td class="align-c"><b>Để lại PVN</b></td>
+							</tr>
+							 
+							<xsl:for-each select="$PLuc_02_1_PL_DK/ChiTietPhanChia">
+									<xsl:variable name="currentRows" select='position()' />
+							<tr>
+							  <td class="align-c"><xsl:value-of select="$currentRows" /></td>
+							  <td class="align-c"><xsl:value-of select="ihtkk:stringDatetime(ngayXuatBan,'dd/mm/yyyy')"/></td>
+							  <td class="align-r"><xsl:value-of select="ihtkk:formatNumber(sanLuongThung_BTU)"/></td>
+							  <td class="align-r"><xsl:value-of select="ihtkk:formatNumber(sanLuongTan)"/></td>
+							  <td class="align-r"><xsl:value-of select="ihtkk:formatNumber(giaBan)"/></td>
+							  <td class="align-r"><xsl:value-of select="ihtkk:formatNumber(chiPhiThuHoi)"/></td>
+							  <td class="align-r"><xsl:value-of select="ihtkk:formatNumber(thueTaiNguyen)"/></td>
+							  <td class="align-r"><xsl:value-of select="ihtkk:formatNumber(thueXuatKhau_DacBiet)"/></td>
+							  <td class="align-r"><xsl:value-of select="ihtkk:formatNumber(thuePhuThu)"/></td>
+							  <td class="align-r"><xsl:value-of select="ihtkk:formatNumber(thueTNDN)"/></td>
+							  <td class="align-r"><xsl:value-of select="ihtkk:formatNumber(chiPhiKhac)"/></td>
+							  <td class="align-r"><xsl:value-of select="ihtkk:formatNumber(laiDauKhi)"/></td>
+							  <td class="align-r"><xsl:value-of select="ihtkk:formatNumber(tong)"/></td>
+							  <td class="align-r"><xsl:value-of select="ihtkk:formatNumber(nopNSNN)"/></td>
+							  <td class="align-r"><xsl:value-of select="ihtkk:formatNumber(deLaiPVN)"/></td>
+							  </tr>
+							</xsl:for-each>
+							
+						   </table>
+					  </div>
+					</div>
+	<table style="page-break-inside: avoid;width:100%" >
+<tr>
+<td>				
+			<xsl:call-template name="tkhaiFooter"/>	
+			<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<b><u><i>Ghi chú:</i></u> </b></div> 
+			 <div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<i> - Chỉ tiêu [04]: Kỳ tính thuế là ngày, tháng, năm là ngày xuất bán đối với dầu thô; Kỳ tính thuế là tháng, năm là tháng xuất bán đối với khí thiên nhiên.  </i></div>
+			<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<i> - Chỉ tiêu [05]: Tên người nộp thuế là Tập đoàn Dầu khí Việt Nam (Lô...).  </i></div>
+			<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<i> - Trường hợp một NNT khai thác đồng thời dầu thô, condensate và khí thiên nhiên thì kê khai thành từng tờ khai riêng biệt.  </i></div>
+			<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<i> - Trường hợp dầu thô, condensate, khí thiên nhiên bán tại thị trường Việt Nam hoặc Chính phủ có quy định khác thì đồng tiền nộp thuế là đồng Việt Nam; tỷ giá quy đổi thực hiện theo quy định pháp luật về kế toán  </i></div>
+			<div id="sigDiv"></div>
+</td>
+</tr>
+</table>		
+		</xsl:if>
+	</xsl:template>		
+</xsl:stylesheet>

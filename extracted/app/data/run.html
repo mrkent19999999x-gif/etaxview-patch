@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="css/ihtkk.css">
+<link rel="stylesheet" type="text/css" href="css/ihtkk_ntdt.css">
+<head>
+<style type="text/css">
+body {
+    z-index: 1;
+}
+#cover {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter:alpha(opacity=80); /* Only applies to IE */
+    background: black; /* This will be overwritten by browsers that support rgba */
+    z-index: 10;
+}
+#modalbox {
+    border:solid 1px black;
+    background: gray;
+	padding: 5px 5px 5px 5px;
+    position: fixed;
+    top: 50%;
+    left:50%;
+    z-index: 20;
+}
+#signature
+{
+   page-break-inside: avoid !important;
+}
+ tr,td, tbody, thead, tfoot {
+    page-break-inside: avoid !important;
+}
+</style>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script>
+function loadXMLDoc(dname)
+{
+if (window.ActiveXObject)
+  {
+  xhttp=new ActiveXObject("Msxml2.XMLHTTP.3.0");
+  }
+else
+  {
+  xhttp=new XMLHttpRequest();
+  }
+xhttp.open("GET",dname,false);
+xhttp.send("");
+return xhttp.responseXML;
+}
+
+function transform(partXML, partXSL)
+{
+  		var vxml = new ActiveXObject("Microsoft.XMLDOM");
+        vxml.async = false;
+        vxml.load(partXML);
+        // Load the XSL
+        var vxsl = new ActiveXObject("Microsoft.XMLDOM");
+        vxsl.async = false;
+        vxsl.load(partXSL);
+		ex = TransformToHtmlText(vxml,vxsl);
+		document.getElementById('tkhai').innerHTML=ex;
+		$('.number').each(function(index){
+		var x = $(this).text();
+		$(this).text(formatNumber(x));
+	    });
+		ex=document.getElementById('tkhai').innerHTML;
+	    return ex;
+  
+
+}
+function TransformToHtmlText(xmlDoc, xsltDoc) {
+    if (typeof (XSLTProcessor) != "undefined") { // FF, Safari, Chrome etc
+        var xsltProcessor = new XSLTProcessor();
+        xsltProcessor.importStylesheet(xsltDoc);
+        var xmlFragment = xsltProcessor.transformToFragment(xmlDoc, document);
+        return GetXmlStringFromXmlDoc(xmlFragment);
+    }
+
+    if (typeof (xmlDoc.transformNode) != "undefined") { // IE6, IE7, IE8
+		try {
+        return xmlDoc.transformNode(xsltDoc);
+		}
+        catch (err) {   
+            return err.message;
+        }
+    }
+    else {
+        try { // IE9 and grater
+            if (window.ActiveXObject) {
+                var xslt = new ActiveXObject("Msxml2.XSLTemplate");
+                var xslDoc = new ActiveXObject("Msxml2.FreeThreadedDOMDocument");
+                xslDoc.loadXML(xsltDoc.xml);
+                xslt.stylesheet = xslDoc;
+                var xslProc = xslt.createProcessor();
+                xslProc.input = xmlDoc;
+                xslProc.transform();
+                return xslProc.output;
+            }
+        }
+        catch (e) {           
+            return e.message;
+        }
+
+    }
+}
+function displaySig() {
+    var result;
+    try {
+        result = displaySigFunction();
+    } catch (e) {
+        alert('Đã có lỗi xảy ra: ' + e.message);
+        return;
+    }
+}
+function showMsgBox(img, msg) {
+	document.getElementById('msgImg').src =  img;
+	document.getElementById('msg').innerHTML = msg;
+	document.getElementById('msgBox').style.visibility='visible';
+}
+function showLoadingMsgBox(msg) {
+	showMsgBox('../image/progress.gif', msg);
+}
+function hideMsgBox() {
+	document.getElementById('msgBox').style.visibility='hidden';
+}
+function getPdfVer() {
+	var info = getAcrobatInfo();
+	if (info ==null) return 0;
+    if (info.acrobatVersion==null) return 0;
+	return  info.acrobatVersion;
+}
+var getAcrobatInfo = function() {
+ 
+  var getBrowserName = function() {
+  return "ie";
+  };
+ 
+  var getActiveXObject = function(name) {
+    try { return new ActiveXObject(name); } catch(e) {}
+  };
+ 
+  var getNavigatorPlugin = function(name) {
+    for(key in navigator.plugins) {
+      var plugin = navigator.plugins[key];
+      if(plugin.name == name) return plugin;
+    }
+  };
+ 
+  var getPDFPlugin = function() {
+    return this.plugin = this.plugin || function() {
+      if(getBrowserName() == 'ie') {
+        //
+        // load the activeX control
+        // AcroPDF.PDF is used by version 7 and later
+        // PDF.PdfCtrl is used by version 6 and earlier
+        return getActiveXObject('AcroPDF.PDF') || getActiveXObject('PDF.PdfCtrl');
+      }
+      else {
+        return getNavigatorPlugin('Adobe Acrobat') || getNavigatorPlugin('Chrome PDF Viewer') || getNavigatorPlugin('WebKit built-in PDF');
+      }
+    }();
+  };
+ 
+  var isAcrobatInstalled = function() {
+    return !!getPDFPlugin();
+  };
+ 
+  var getAcrobatVersion = function() {
+    try {
+      var plugin = getPDFPlugin();
+ 
+      if(getBrowserName() == 'ie') {
+        var versions = plugin.GetVersions().split(',');
+        var latest   = versions[0].split('=');
+        return parseFloat(latest[1]);
+      }
+ 
+      if(plugin.version) return parseInt(plugin.version);
+      return plugin.name
+      
+    }
+    catch(e) {
+      return null;
+    }
+  }
+ 
+  //
+  // The returned object
+  // 
+  return {
+    browser:        getBrowserName(),
+    acrobat:        isAcrobatInstalled() ? 'installed' : false,
+    acrobatVersion: getAcrobatVersion()
+  };
+};
+</script>
+</head>
+<body style="background-color:rgb(86,86,86)">
+ <table id="tkhaiTable" width="892px" style="background-color:white" cellpadding="30" cellspacing="0" border="0" align="center">
+  <tr>
+   <td>
+    <table cellpadding="0" cellspacing="0" border="0" align="center" style="width:100%">
+     <tr>
+      <td align="left" id="tkhai"  style="width:100%">	
+      </td>
+     </tr>
+     <tr>
+      <td id="signature" class="signature"></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table>
+ <div id="msgBox" style="visibility: hidden">
+  <div id="cover"></div>
+  <div id="modalbox">
+   <table cellpadding="3" cellspacing="0" border="0" align="center">
+    <tr>
+     <td><img id="msgImg" border="0" style="display:block"></td>
+     <td id="msg"></td>
+    </tr>
+   </table>
+  </div>
+ </div>
+</body>
+</html>

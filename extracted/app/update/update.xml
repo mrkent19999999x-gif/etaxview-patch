@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<update>
+	<instruction>
+		<action>MOVE</action>
+		<file>BC01ACImporter.jar</file>
+		<destination>BC01ACImporter.jar
+		</destination>
+	</instruction>
+	<instruction>
+		<action>MOVE</action>
+		<file>latest.xml</file>
+		<destination>update/latest.xml
+		</destination>
+	</instruction>
+</update>

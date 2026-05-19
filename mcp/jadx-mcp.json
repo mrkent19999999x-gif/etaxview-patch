@@ -1,0 +1,27 @@
+{
+  "name": "jadx-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for JADX - Java/Android decompiler for iTaxViewer reverse engineering",
+  "command": "jadx-mcp",
+  "args": [],
+  "env": {
+    "JADX_WORKSPACE": "/root/etaxview-patch/extracted/app",
+    "JADX_OUTPUT_DIR": "/root/etaxview-patch/reports/jadx-output",
+    "JAVA_HOME": "/usr/lib/jvm/java-11-openjdk-arm64"
+  },
+  "targets": {
+    "main_jar": {
+      "path": "/root/etaxview-patch/extracted/app/itaxviewer.jar",
+      "output": "/root/etaxview-patch/reports/jadx-output/itaxviewer"
+    },
+    "updater_jar": {
+      "path": "/root/etaxview-patch/extracted/app/update/updater.jar",
+      "output": "/root/etaxview-patch/reports/jadx-output/updater"
+    },
+    "libraries": [
+      "/root/etaxview-patch/extracted/app/itaxviewer_lib/bcprov-jdk16-146.jar",
+      "/root/etaxview-patch/extracted/app/itaxviewer_lib/pd4ml.jar",
+      "/root/etaxview-patch/extracted/app/itaxviewer_lib/pdfbox-app-1.8.8.jar"
+    ]
+  }
+}

@@ -1,0 +1,138 @@
+<html>
+<link rel="stylesheet" type="text/css" href="css/ihtkk.css">
+<link rel="stylesheet" type="text/css" href="css/ihtkk_ntdt.css">
+<head>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script>
+var hso ='';
+function gup( name )
+{
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( window.location.href );
+  if( results == null )
+    return null; 
+  else
+    return results[1];
+}
+
+function loadXMLDoc(dname)
+{
+if (window.ActiveXObject)
+  {
+  xhttp=new ActiveXObject("Msxml2.XMLHTTP.3.0");
+  }
+else
+  {
+  xhttp=new XMLHttpRequest();
+  }
+xhttp.open("GET",dname,false);
+xhttp.send("");
+return xhttp.responseXML;
+}
+
+function getHtml(xml,xslt,last)
+{
+
+// code for IE
+
+if (window.ActiveXObject)
+  {
+  		var vxml = new ActiveXObject("Microsoft.XMLDOM");
+		var divPageBreak = "<p style='page-break-before: always' /><br/>" 
+        vxml.async = false;
+        vxml.load(xml);
+        // Load the XSL
+        var vxsl = new ActiveXObject("Microsoft.XMLDOM");
+        vxsl.async = false;
+        vxsl.load(xslt);
+		ex = TransformToHtmlText(vxml,vxsl);
+		hso= hso +   ex ;
+		if(last != 1)
+		{
+		hso = hso+ divPageBreak;
+		}
+	    
+	   //document.getElementById("tkhai").innerHTML=ex;
+
+  }
+// code for Mozilla, Firefox, Opera, etc.
+else if (document.implementation && document.implementation.createDocument)
+  {
+  xml=loadXMLDoc(partXML);
+  xsl=loadXMLDoc(partXSL);
+  xsltProcessor=new XSLTProcessor();
+  xsltProcessor.importStylesheet(xsl);
+  resultDocument = xsltProcessor.transformToFragment(xml,document);
+  document.getElementById("tkhai").appendChild(resultDocument);
+  }
+}
+function TransformToHtmlText(xmlDoc, xsltDoc) {
+    if (typeof (XSLTProcessor) != "undefined") { // FF, Safari, Chrome etc
+        var xsltProcessor = new XSLTProcessor();
+        xsltProcessor.importStylesheet(xsltDoc);
+        var xmlFragment = xsltProcessor.transformToFragment(xmlDoc, document);
+        return GetXmlStringFromXmlDoc(xmlFragment);
+    }
+
+    if (typeof (xmlDoc.transformNode) != "undefined") { // IE6, IE7, IE8
+		try {
+        return xmlDoc.transformNode(xsltDoc);
+		}
+        catch (err) {   
+            return err.message;
+        }
+    }
+    else {
+        try { // IE9 and grater
+            if (window.ActiveXObject) {
+                var xslt = new ActiveXObject("Msxml2.XSLTemplate");
+                var xslDoc = new ActiveXObject("Msxml2.FreeThreadedDOMDocument");
+                xslDoc.loadXML(xsltDoc.xml);
+                xslt.stylesheet = xslDoc;
+                var xslProc = xslt.createProcessor();
+                xslProc.input = xmlDoc;
+                xslProc.transform();
+                return xslProc.output;
+            }
+        }
+        catch (e) {           
+            return "anh dinh";
+        }
+
+    }
+}
+function displaySig() {
+    var result;
+    try {
+        result = displaySigFunction();
+    } catch (e) {
+        alert('Đã có lỗi xảy ra: ' + e.message);
+        return;
+    }
+}
+</script>
+</head>
+<body   style="background-color:rgb(86,86,86)">
+ <div  style="background-color:white; padding:40px 40px 40px 40px; width:100% ; font-family: Tahoma ; font-size: 9pt;"    align="center">
+ 
+   
+      <div style=" font-family: Tahoma ; font-size: 9pt;" id="tkhai" align="left" ></div>
+     
+      <div id="signature" align="left"></div>
+     
+ 
+ </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.number').each(function(index){
+		var x = $(this).text();
+		$(this).text(formatNumber(x));
+	});
+})
+</script>
+</body>
+</html>

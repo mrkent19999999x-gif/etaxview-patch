@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+xmlns:ihtkk="http://www.nhantokhai.gdt.gov.vn/xslt">
+<xsl:include href="../../include/TKhaiHeader.xsl"/>
+ <xsl:include href="../../include/TKhaiFooter.xsl"/>    
+ <xsl:include href="../../common/common.xsl"/> 
+	<xsl:template match="/">
+	    <xsl:variable name="ttkthue" select='HSoThueDTu/HSoKhaiThue/TTinChung/TTinTKhaiThue' />		
+		<xsl:variable name="tkchinh" select='HSoThueDTu/HSoKhaiThue/CTieuTKhaiChinh' />
+		<xsl:variable name="moTaBieuMau" select="'Ban hành kèm theo Quyết định số 16/2007/QĐ-NHNN Ngày 18/04/2006 Thống đốc NHNN'" />
+				
+<!-- KẾT QUẢ HOẠT ĐỘNG SẢN XUẤT KINH DOANH  -->
+
+	<xsl:if test="HSoThueDTu/HSoKhaiThue/PLuc/PL_KQHDXSKD">	
+	<xsl:variable name="pluc01" select='HSoThueDTu/HSoKhaiThue/PLuc/PL_KQHDXSKD' />	
+	<div class="ndungtkhai_div">
+	<div class="content">
+    <div class="align-c"><b>BÁO CÁO KẾT QUẢ HOẠT ĐỘNG SẢN XUẤT KINH DOANH</b></div>	<br/>
+    <div class="align-r"><i>Đơn vị tiền: đồng Việt Nam</i></div><br/>
+    
+    <table class="tkhai_table">
+        <tr>
+            <td class="align-c"><b>STT</b></td>
+            <td class="align-c"><b>Chỉ tiêu </b></td>
+            <td class="align-c"><b>Thuyết minh </b></td>
+            <td class="align-c"><b>Số năm nay </b></td>
+            <td class="align-c"><b>Số năm trước </b></td>
+        </tr>
+        <tr>
+            <td class="align-c"><b>(1)</b></td>
+            <td class="align-c"><b>(2) </b></td>
+            <td class="align-c"><b>(3) </b></td>
+            <td class="align-c"><b>(4) </b></td>
+            <td class="align-c"><b>(5) </b></td>
+        </tr>
+        <tr>
+            <td class="align-c">1</td>
+            <td>Thu nhập lãi và các khoản thu nhập tương tự</td>
+            <td class="align-c">VI.24</td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNay/ct1_nNay"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNgoai/ct1_nNgoai"/></td>
+        </tr>
+        <tr>
+            <td class="align-c">2</td>
+            <td>Chi trả lãi và các chi phí tương tự</td>
+            <td class="align-c">VI.25</td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNay/ct2_nNay"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNgoai/ct2_nNgoai"/></td>
+        </tr>
+        <tr>
+            <b>
+            <td class="align-c"><b>I</b></td>
+            <td><b>Thu nhập lãi thuần (I = 1 - 2)</b></td>
+            <td class="align-c"><b></b></td>
+            <td class="number align-r"><b class="number"><xsl:value-of select="$pluc01/SoNamNay/ctI_nNay"/></b></td>
+            <td class="number align-r"><b class="number"><xsl:value-of select="$pluc01/SoNamNgoai/ctI_nNgoai"/></b></td>
+            </b>
+        </tr>
+        <tr>
+            <td class="align-c">3</td>
+            <td>Thu nhập từ hoạt động dịch vụ</td>
+            <td class="align-c"></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNay/ct3_nNay"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNgoai/ct3_nNgoai"/></td>
+        </tr>
+        <tr>
+            <td class="align-c">4</td>
+            <td>Chi phí hoạt động dịch vụ</td>
+            <td class="align-c"></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNay/ct4_nNay"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNgoai/ct4_nNgoai"/></td>
+        </tr>
+        <tr>
+            <b>
+            <td class="align-c"><b>II</b></td>
+            <td><b>Lãi / lỗ thuần từ hoạt động dịch vụ (II = 3 - 4)</b></td>
+            <td class="align-c"><b>V.26</b></td>
+            <td class="number align-r"><b class="number"><xsl:value-of select="$pluc01/SoNamNay/ctII_nNay"/></b></td>
+            <td class="number align-r"><b class="number"><xsl:value-of select="$pluc01/SoNamNgoai/ctII_nNgoai"/></b></td>
+            </b>
+        </tr>
+        <tr>
+            <td class="align-c">III</td>
+            <td>Lãi / lỗ thuần từ hoạt động kinh doanh ngoại hối</td>
+            <td class="align-c">V.27</td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNay/ctIII_nNay"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNgoai/ctIII_nNgoai"/></td>
+        </tr>
+        <tr>
+            <td class="align-c">IV</td>
+            <td>Lãi / lỗ thuần từ mua bán chứng khoán kinh doanh</td>
+            <td class="align-c">V.28</td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNay/ctIV_nNay"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNgoai/ctIV_nNgoai"/></td>
+        </tr>
+        <tr>
+            <td class="align-c">V</td>
+            <td>Lãi / lỗ thuần từ mua bán chứng khoán đầu tư</td>
+            <td class="align-c">V.29</td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNay/ctV_nNay"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNgoai/ctV_nNgoai"/></td>
+        </tr>
+        <tr>
+            <td class="align-c">5</td>
+            <td>Thu nhập từ hoạt động khác</td>
+            <td class="align-c"></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNay/ct5_nNay"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNgoai/ct5_nNgoai"/></td>
+        </tr>
+        <tr>
+            <td class="align-c">6</td>
+            <td>Chi phí hoạt động khác</td>
+            <td class="align-c"></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNay/ct6_nNay"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNgoai/ct6_nNgoai"/></td>
+        </tr>
+        <tr>
+            <b>
+            <td class="align-c"><b>VI</b></td>
+            <td><b>Lãi / lỗ thuần từ hoạt động khác (VI = 5 - 6)</b></td>
+            <td class="align-c"><b>V.31</b></td>
+            <td class="number align-r"><b class="number"><xsl:value-of select="$pluc01/SoNamNay/ctVI_nNay"/></b></td>
+            <td class="number align-r"><b class="number"><xsl:value-of select="$pluc01/SoNamNgoai/ctVI_nNgoai"/></b></td>
+            </b>
+        </tr>
+        <tr>
+            <td class="align-c">VII</td>
+            <td>Thu nhập từ góp vốn, mua cổ phần</td>
+            <td class="align-c">V.30</td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNay/ctVII_nNay"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNgoai/ctVII_nNgoai"/></td>
+        </tr>
+        <tr>
+            <td class="align-c">VIII</td>
+            <td>Chi phí hoạt động</td>
+            <td class="align-c">V.32</td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNay/ctVIII_nNay"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNgoai/ctVIII_nNgoai"/></td>
+        </tr>
+        <tr>
+            <b>
+            <td class="align-c"><b>IX</b></td>
+            <td><b>Lợi nhuận thuần từ hoạt động kinh doanh trước chi phí dự phòng rủi ro tín dụng (IX=I+II+III+IV+V+VI+VII-VIII)</b></td>
+            <td class="align-c"><b></b></td>
+            <td class="number align-r"><b class="number"><xsl:value-of select="$pluc01/SoNamNay/ctIX_nNay"/></b></td>
+            <td class="number align-r"><b class="number"><xsl:value-of select="$pluc01/SoNamNgoai/ctIX_nNgoai"/></b></td>
+            </b>
+        </tr>
+        <tr>
+            <td class="align-c">X</td>
+            <td>Chi phí dự phòng rủi ro tín dụng</td>
+            <td class="align-c"></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNay/ctX_nNay"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNgoai/ctX_nNgoai"/></td>
+        </tr>
+        <tr>
+            <b>
+            <td class="align-c"><b>XI</b></td>
+            <td><b>Tổng lợi nhuận trước thuế (XI = IX - X)</b></td>
+            <td class="align-c"><b></b></td>
+            <td class="number align-r"><b class="number"><xsl:value-of select="$pluc01/SoNamNay/ctXI_nNay"/></b></td>
+            <td class="number align-r"><b class="number"><xsl:value-of select="$pluc01/SoNamNgoai/ctXI_nNgoai"/></b></td>
+            </b>
+        </tr>
+        <tr>
+            <td class="align-c">07</td>
+            <td>Chi phí thuế TNDN hiện hành</td>
+            <td class="align-c"></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNay/ct7_nNay"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNgoai/ct7_nNgoai"/></td>
+        </tr>
+        <tr>
+            <td class="align-c">08</td>
+            <td>Chi phí thuế TNDN hoãn lại</td>
+            <td class="align-c"></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNay/ct8_nNay"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNgoai/ct8_nNgoai"/></td>
+        </tr>
+        <tr>
+            <b>
+            <td class="align-c"><b>XII</b></td>
+            <td><b>Chi phí thuế TNDN (XII = 7 + 8)</b></td>
+            <td class="align-c"><b>V.33</b></td>
+            <td class="number align-r"><b class="number"><xsl:value-of select="$pluc01/SoNamNay/ctXII_nNay"/></b></td>
+            <td class="number align-r"><b class="number"><xsl:value-of select="$pluc01/SoNamNgoai/ctXII_nNgoai"/></b></td>
+            </b>
+        </tr>
+        <tr>
+            <b>
+            <td class="align-c"><b>XIII</b></td>
+            <td><b>Lợi nhuận sau thuế (XI - XII)</b></td>
+            <td class="align-c"><b></b></td>
+            <td class="number align-r"><b class="number"><xsl:value-of select="$pluc01/SoNamNay/ctXIII_nNay"/></b></td>
+            <td class="number align-r"><b class="number"><xsl:value-of select="$pluc01/SoNamNgoai/ctXIII_nNgoai"/></b></td>
+            </b>
+        </tr>
+        <tr>
+            <td class="align-c">XIV</td>
+            <td>Lợi ích của cổ đông thiểu số</td>
+            <td class="align-c"></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNay/ctXIV_nNay"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNgoai/ctXIV_nNgoai"/></td>
+        </tr>
+        <tr>
+            <td class="align-c">XV</td>
+            <td>Lãi cơ bản trên cổ phiếu</td>
+            <td class="align-c"></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNay/ctXV_nNay"/></td>
+            <td class="number align-r"><xsl:value-of select="$pluc01/SoNamNgoai/ctXV_nNgoai"/></td>
+        </tr>
+ </table>
+ </div>	
+ </div>
+    <br/><br/>
+<table style="page-break-inside: avoid;width:100%" >
+<tr>
+<td>	  	
+<xsl:call-template name="tkhaiFooter-BCTC16">   
+</xsl:call-template>
+<div id="sigDiv"></div>
+</td>
+</tr>
+</table>
+</xsl:if>
+
+</xsl:template>		
+</xsl:stylesheet>

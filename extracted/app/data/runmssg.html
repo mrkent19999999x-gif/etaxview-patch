@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+body {
+    z-index: 1;
+}
+#cover {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter:alpha(opacity=70); /* Only applies to IE */
+    background: black; /* This will be overwritten by browsers that support rgba */
+    z-index: 10;
+}
+#modalbox {
+    border:solid 5px #ccc;
+    position: fixed;
+    top: 50%;
+    left:50%;
+    z-index: 20;
+}
+#notModal {
+    height:500px;
+    border:solid 5px #ccc;
+    z-index: 5;
+}
+</style>
+<script type="text/javascript">
+function toggleOverlay(){
+var overlay = document.getElementById('overlay');
+var specialBox = document.getElementById('specialBox');
+overlay.style.opacity = .8;
+if(overlay.style.display == "block"){
+overlay.style.display = "none";
+specialBox.style.display = "none";
+} else {
+overlay.style.display = "block";
+specialBox.style.display = "block";
+}
+}
+</script>
+</head>
+<body>
+<div id="cover"></div>
+<div id="modalbox">
+   <h2>I am modal</h2>
+   <form><input type=submit></form>
+ </div>
+
+<div>
+    <div>
+        <h2>a I am not modal</h2>
+        <p>lorem ipsit dolar foo bar baz</p>
+        <form><input type=submit></form>
+    </div>
+</div>
+ <table id="tkhaiTable" style="background-color:white" width="900" cellpadding="30" cellspacing="0" border="0" align="center">
+  <tr>
+   <td>
+    <table cellpadding="0" cellspacing="0" border="0" align="center">
+     <tr>
+      <td align="left" id="tkhai">
+      </td>
+     </tr>
+     <tr>
+      <td id="signature">dddddd</td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table>
+</body>
+</html>

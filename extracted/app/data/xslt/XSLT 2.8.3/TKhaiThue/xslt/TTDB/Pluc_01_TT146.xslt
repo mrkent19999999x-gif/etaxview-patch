@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+xmlns:ihtkk="http://www.nhantokhai.gdt.gov.vn/xslt">
+<xsl:include href="../../include/TKhaiHeader.xsl"/>
+ <xsl:include href="../../include/TKhaiFooter.xsl"/>    
+ <xsl:include href="../../common/common.xsl"/> 
+	<xsl:template match="/">
+		<xsl:variable name="tkchinh" select='HSoThueDTu/HSoKhaiThue/CTieuTKhaiChinh'/>
+		<xsl:variable name="moTaBieuMau" select="'Ban hành kèm theo Thông tư số 146/2017/TT-BTC ngày 29/12/ 2017 của Bộ Tài chính'"/>
+		<xsl:variable name="ghiChuPL" select="'Ban hành kèm theo Thông tư số 146/2017/TT-BTC ngày 29/12/ 2017 của Bộ Tài chính'"/>
+	  <!-- Phụ lục 01-Phieu tong hop doanh thu TT146/2017 -->
+		<xsl:if test="HSoThueDTu/HSoKhaiThue/PLuc/Pluc_01_TT146"/>	
+		<xsl:variable name="pl01_TT146" select='HSoThueDTu/HSoKhaiThue/PLuc/Pluc_01_TT146'/>
+		<xsl:call-template name="tkhaiHeader_PL_01_TT146">
+			<xsl:with-param name="mauTKhai"   select="'PL01-TT146'"/>
+			<xsl:with-param name="moTaBieuMau"   select="$moTaBieuMau"/>
+			<xsl:with-param name="tenPL"   select="'PHIẾU TỔNG HỢP DOANH THU'"/>
+			<xsl:with-param name="ghiChuPL"   select="'(Ban hành kèm theo Thông tư số 146/2017/TT-BTC ngày 29/12/ 2017 của Bộ Tài chính)'"/>
+		</xsl:call-template>
+				
+        <div class="ndungtkhai_div">
+		<table with='100%'>
+							<tr colspan='3'>
+								<td>
+									&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<b>Tên doanh nghiệp</b>: <xsl:value-of select="$ttkthue/NNT/tenNNT"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<b>Mã số thuế</b>: 
+									<xsl:value-of select="$ttkthue/NNT/mst"/>
+									&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+									Liên: <xsl:value-of select="HSoThueDTu/HSoKhaiThue/PLuc/Pluc_01_TT146/PLPhieuTHDoanhThu/lien"/>
+									&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+									Ký hiệu: <xsl:value-of select="HSoThueDTu/HSoKhaiThue/PLuc/Pluc_01_TT146/PLPhieuTHDoanhThu/kiHieu"/>
+								</td>
+								
+							</tr>
+							<tr colspan='3'>
+								<td>
+									&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Ngày <xsl:value-of select="ihtkk:stringDatetime(HSoThueDTu/HSoKhaiThue/PLuc/Pluc_01_TT146/PLPhieuTHDoanhThu/ngay,'dd')"/> tháng <xsl:value-of select="ihtkk:stringDatetime(HSoThueDTu/HSoKhaiThue/PLuc/Pluc_01_TT146/PLPhieuTHDoanhThu/ngay,'mm')"/> năm <xsl:value-of select="ihtkk:stringDatetime(HSoThueDTu/HSoKhaiThue/PLuc/Pluc_01_TT146/PLPhieuTHDoanhThu/ngay,'yyyy')"/>
+								</td>
+							</tr>
+							<tr colspan='3'>
+								<td>
+									&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Điểm kinh doanh casino: <xsl:value-of select="HSoThueDTu/HSoKhaiThue/PLuc/Pluc_01_TT146/PLPhieuTHDoanhThu/diaDiem"/>
+								</td>
+							</tr>
+							<tr colspan='3'>
+								<td class="align-r">
+									<i> Đơn vị tính: VNĐ</i>
+								</td>
+							</tr>
+		</table>
+		<table class="tkhai_table" with='100%'>		
+			
+				
+					<tr>
+						   <td class="align-c"><b>Số bàn/máy</b></td>
+						   <td class="align-c"><b>Số tiền thu được trừ (-) số tiền trả thưởng cho khách</b></td>						   
+						   <td class="align-c"><b>Ghi chú</b></td>	
+							
+					</tr>
+					<tr>
+						   <td class="align-c"><b>(1)</b></td>
+						   <td class="align-c"><b>(2)</b></td>
+						   <td class="align-c"><b>(3)</b></td>
+						   
+													
+					</tr>
+					<xsl:for-each select="HSoThueDTu/HSoKhaiThue/PLuc/Pluc_01_TT146/PLPhieuTHDoanhThu/BKDoanhThu/ChiTietDoanhThu">								
+								<tr>
+									
+									<td class="align-c"><xsl:value-of select="soBanMay"/></td>								
+																	
+									<td class="align-r"><xsl:value-of select="ihtkk:formatNumber(soTien)"/></td>
+									<td class="align-l"><xsl:value-of select="ghiChu"/></td>		
+								 	
+								</tr>
+					</xsl:for-each>
+					<tr>
+					<td class="align-c"><b>Tổng cộng</b></td>
+					<td class="align-r"><b><xsl:value-of select="ihtkk:formatNumber(HSoThueDTu/HSoKhaiThue/PLuc/Pluc_01_TT146/PLPhieuTHDoanhThu/BKDoanhThu/tongCong)"/> </b></td>
+					<td/>
+					</tr>
+					<tr>
+					<td class="align-c"><b>Đối chiếu mức chênh lệch</b></td>
+					<td class="align-r"><b><xsl:value-of select="ihtkk:formatNumber(HSoThueDTu/HSoKhaiThue/PLuc/Pluc_01_TT146/PLPhieuTHDoanhThu/BKDoanhThu/doiChieuChenhLech)"/> </b></td>
+					<td/>
+					</tr>
+													 
+			</table>
+		</div>	
+		<table style="page-break-inside: avoid;width:100%" >
+			<tr>
+				<td>		  
+					<div class="ghichu">   
+					<xsl:call-template name="tkhaiFooter_PL01_TT146"/>
+					</div>
+					
+					<div id="sigDiv"></div>
+				</td>
+			</tr>
+		</table>
+		
+	</xsl:template>		
+</xsl:stylesheet>
+

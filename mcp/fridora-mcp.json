@@ -1,0 +1,33 @@
+{
+  "name": "fridora-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Fridora - dynamic instrumentation for iTaxViewer runtime analysis",
+  "command": "fridora-mcp",
+  "args": [],
+  "env": {
+    "FRIDORA_SCRIPTS_DIR": "/root/etaxview-patch/scripts/frida",
+    "FRIDORA_REPORTS_DIR": "/root/etaxview-patch/reports/fridora"
+  },
+  "scripts": {
+    "ssl_pinning": {
+      "name": "ssl-unpin.js",
+      "description": "Bypass SSL pinning for network traffic analysis",
+      "target": "iTaxViewer.exe"
+    },
+    "crypto_trace": {
+      "name": "crypto-trace.js",
+      "description": "Trace cryptographic operations (Bouncy Castle)",
+      "target": "iTaxViewer.exe"
+    },
+    "file_access": {
+      "name": "file-access.js",
+      "description": "Monitor file I/O operations",
+      "target": "iTaxViewer.exe"
+    },
+    "registry_monitor": {
+      "name": "registry-monitor.js",
+      "description": "Monitor Windows registry access",
+      "target": "iTaxViewer.exe"
+    }
+  }
+}

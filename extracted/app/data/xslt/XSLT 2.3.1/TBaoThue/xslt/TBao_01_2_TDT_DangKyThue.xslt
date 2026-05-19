@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+xmlns:ihtkk="http://www.nhantokhai.gdt.gov.vn/xslt">
+<xsl:include href="../include/TBaoHeader.xsl"/>
+<xsl:include href="../include/TBaoFooter.xsl"/>    
+<xsl:include href="../common/common.xsl"/>
+	<xsl:template match="/">
+		<xsl:variable name="tbThue" select='TBaoThueDTu/TBaoThue/TTinChung/TTinTBaoThue' />
+		<xsl:variable name="NNhanTBaoThue" select='TBaoThueDTu/TBaoThue/TTinChung/NNhanTBaoThue' />
+		<xsl:variable name="ndungTBao" select='TBaoThueDTu/TBaoThue/NDungTBao' />
+		<xsl:variable name="moTaBieuMau" select="'Ban hành kèm theo Thông tư số 19/2021/TT-BTC ngày 18/3/2021 của Bộ trưởng Bộ Tài chính'"/>
+
+		<xsl:call-template name="tbaoHeader_01_TDT">
+			<xsl:with-param name="mauTBao"   select="'01-2/TB-TĐT'"/>
+			<xsl:with-param name="soTBao"   select="$tbThue/soTBao" />
+			<xsl:with-param name="ngayTBao"   select="$tbThue/ngayTBao" />
+		  <xsl:with-param name="moTaBieuMau"   select="$moTaBieuMau"/>
+			<xsl:with-param name="motaTBao"   select="$tbThue/tenTBao" />
+
+		</xsl:call-template>
+		<br/>
+		<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Căn cứ quy định tại Luật Quản lý thuế ngày 13/6/2019;</div> <br/>
+<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Căn cứ quy định tại Thông tư số 19/2021/TT-BTC ngày 18/3/2021 của Bộ trưởng Bộ Tài chính hướng dẫn giao dịch điện tử trong lĩnh vực thuế.</div> <br/>
+
+	
+	
+		
+						<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Căn cứ hồ sơ thuế điện tử của NNT do <xsl:value-of select="$NNhanTBaoThue/tenNNT"/> gửi tới cơ quan thuế đã được cổng thông tin điện tử của Tổng cục thuế thông báo <b>tiếp nhận</b> vào lúc <xsl:value-of select="ihtkk:stringDatetime($ndungTBao/ngayHoSo,'hh')"/> giờ <xsl:value-of select="ihtkk:stringDatetime($ndungTBao/ngayHoSo,'mi')"/> phút <xsl:value-of select="ihtkk:stringDatetime($ndungTBao/ngayHoSo,'ii')"/> giây ngày <xsl:value-of select="ihtkk:stringDatetime($ndungTBao/ngayHoSo,'dd')"/> tháng <xsl:value-of select="ihtkk:stringDatetime($ndungTBao/ngayHoSo,'mm')"/> năm <xsl:value-of select="ihtkk:stringDatetime($ndungTBao/ngayHoSo,'yyyy')"/> mã giao dịch điện tử <xsl:value-of select="$ndungTBao/maGiaoDichDTu"/> Cơ quan thuế thông báo về việc <b>không chấp nhận hồ sơ thuế điện tử</b> của NNT, cụ thể như sau:</div><br/>
+						<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;+ <xsl:value-of select="$ndungTBao/HoSoThue/CTietHoSoThue/tokhai-phuluc"/> mẫu <xsl:value-of select="$ndungTBao/HoSoThue/CTietHoSoThue/mauSo"/> và tài liệu đính kèm</div><br/>
+						
+				
+											
+						
+							<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;- Lý do không chấp nhận cụ thể như sau:</div><br/>
+									
+						
+
+						<table class="tkhai_table">
+				<tr>
+					<td class="align-c"><b>STT</b></td>
+					<td class="align-c"><b>Tên hồ sơ</b></td>
+					<td class="align-c"><b>Mẫu số</b></td>
+					<td class="align-c"><b>Thông tin có sai sót</b></td>
+					<td class="align-c"><b>Hướng dẫn xử lý</b></td>
+				</tr>
+				<tr>
+					<td class="align-c">(1)</td>
+					<td class="align-c">(2)</td>
+					<td class= "align-c">(3)</td>
+				   <td class="align-c">(4)</td>
+				      <td class="align-c">(5)</td>
+				</tr>
+				
+				 <xsl:for-each select="$ndungTBao/TTHoSoThue/CTietHoSoThue">
+									<xsl:variable name="currentRows" select='position()' />
+							<tr>
+							  <td class="align-c"><xsl:value-of select="$currentRows" /></td>
+							  <td class="align-l"><xsl:value-of select="tenHoSo"/> </td>
+							    <td class="align-c"><xsl:value-of select="mauSo"/> </td>
+							  <td class="align-l"><xsl:value-of select="thongTinSaiSot"/></td>
+							  <td class="align-l"><xsl:value-of select="huongDanXuly"/></td>
+							</tr>
+							
+							</xsl:for-each>
+			</table>	<br/>	
+			<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Đề nghị người nộp thuế điều chỉnh, hoàn thiện hồ sơ để nộp lại hồ sơ khác để thay thế cho hồ sơ đã nộp có sai sót đã gửi đến cơ quan thuế theo hướng dẫn nêu trên. Cơ quan thuế sẽ giải quyết hồ sơ khi người nộp thuế nộp hồ sơ đầy đủ theo Thông báo này.</div><br/>
+					
+	
+		<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Nếu có vướng mắc, xin vui lòng  truy cập theo đường dẫn: <xsl:value-of select="$ndungTBao/duongDan"/> hoặc liên hệ với <xsl:value-of select="TBaoThueDTu/TBaoThue/TTinChung/CQT/tenCQTQuanLy"/> theo địa chỉ: <xsl:value-of select="$ndungTBao/diChiCQT"/> để được hỗ trợ.</div> <br/>
+	
+<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Cơ quan thuế thông báo để <xsl:value-of select="$NNhanTBaoThue/tenNNT"/> biết, thực hiện./.</div>		
+<table style="page-break-inside: avoid;" >
+			<tr>
+				<td>
+					<div id="sigDiv"></div>
+				</td>
+			</tr>
+		</table>		
+	</xsl:template>		
+</xsl:stylesheet>

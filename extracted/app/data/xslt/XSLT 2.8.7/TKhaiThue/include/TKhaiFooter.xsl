@@ -1,0 +1,576 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/1999/XSL/Transform"
+xmlns:ihtkk="http://www.nhantokhai.gdt.gov.vn/xslt" exclude-result-prefixes="xsl xsi ihtkk">
+ <xsl:include href="../common/common.xsl"/> 
+ <!--start Footer tờ khai dang ky ban hang-->	
+	<xsl:template name="tkhaiFooter_01_dangkybanhang">
+	<xsl:variable name="tkchinh" select='HSoThueDTu/HSoKhaiThue/CTieuTKhaiChinh' />
+	<xsl:variable name="kskthue" select='HSoThueDTu/HSoKhaiThue/TTinChung/TTinTKhaiThue' />
+
+	<div class="footer_div">
+		<table>
+			<tr>
+				<td width="25%">
+					<br/>
+					<b></b>
+				</td>
+				<td colspan="1" width="30%">
+				</td>
+				
+			</tr>
+			<tr>
+				
+				<td width="20%">
+					<br/> <br/>
+					
+				</td>
+				<td colspan="1" width="20%">
+					<xsl:value-of select="$kskthue/DLyThue/NVienDLy/tenNVienDLyThue"/>
+					 <br/> <br/>
+					<xsl:value-of select="$kskthue/DLyThue/NVienDLy/cchiHNghe"/>
+				</td>
+				<xsl:if test="$kskthue/TKhaiThue/ngayKy ">
+					<td width="35%" class="align-c">
+					<b>NGƯỜI ĐẠI DIỆN PHÁP LUẬT CỦA DOANH NGHIỆP</b>
+					<br/>
+					<i> (ký tên, đóng dấu)</i>
+					</td>
+				</xsl:if>
+				<xsl:if test="not($kskthue/TKhaiThue/ngayKy)">
+					<td width="35%" style="text-align:center">
+						
+					</td>
+				</xsl:if>
+			</tr>
+			<tr>
+				
+				<td width="25%"></td>
+				<td colspan="1" width="30%">
+					
+				</td>
+				<td width="35%" class="align-c">
+					
+				</td>
+			</tr>
+			<tr>
+				
+				<td width="25%"/>
+				<td width="35%"/>
+				<td colspan="1" width="30%" class="align-c">
+				<br/>
+				<br/>					
+					<xsl:value-of select="$kskthue/TKhaiThue/nguoiKy"/>
+				</td>
+			</tr>
+		</table>
+		<br/>
+		</div>
+	</xsl:template>	
+	  <!--start Footer 01_KNNT_TDT -->	
+	<xsl:template name="tkhaiFooter_01_KNNT_TDT">
+	<xsl:variable name="kskthue" select='HSoThueDTu/HSoKhaiThue/TTinChung/TTinTKhaiThue' />
+	<xsl:variable name="tkchinh" select="HSoThueDTu/HSoKhaiThue/CTieuTKhaiChinh"/>
+
+	
+	<div class="footer_div">
+		<table>
+			<tr>
+				<td width="25%">
+					<br/>
+					<b></b>
+				</td>
+				<td colspan="1" width="30%">
+				</td>
+				<td width="35%" class="align-c">
+				<br/>
+				<i></i>
+				</td>
+				
+			</tr>
+			<tr>
+				
+				<td width="25%">
+					<br/> <br/>
+				</td>
+				<td colspan="1" width="30%">
+				 <br/> <br/>
+				</td>
+					<td width="35%" class="align-c">
+					<b>
+					<br/>
+					<xsl:value-of select="translate($ttkthue/NNT/tenNNT,$smallcase,$uppercase)"/>
+					</b>
+					<br/>
+					<i>(Chữ ký số của Ngân hàng/Tổ chức)</i>
+					</td>
+			</tr>
+			<tr>
+				
+				<td width="25%"></td>
+				<td colspan="1" width="30%">
+					
+				</td>
+				<td width="35%" class="align-c">
+					
+				</td>
+			</tr>
+			<tr>
+				
+				<td width="25%"/>
+				<td width="35%"/>
+				<td colspan="1" width="30%" class="align-c">
+				<br/>
+				<br/>					
+					<xsl:value-of select="$kskthue/TKhaiThue/nguoiKy"/>
+				</td>
+			</tr>
+		</table>
+		<br/>
+		</div>
+	</xsl:template>
+
+<!--start Footer tờ khai mẫu số 05 (TT179/2013)-->	
+	<xsl:template name="tkhaiFooter_05_TT179">
+		<xsl:variable name="tkchinh" select='HSoThueDTu/HSoKhaiThue/CTieuTKhaiChinh' />
+		<xsl:variable name="kskthue" select='HSoThueDTu/HSoKhaiThue/TTinChung/TTinTKhaiThue' />
+		<br/>
+		<div class="footer_div">
+			<table>
+				<tr>
+					<td></td>
+					<xsl:if test="$kskthue/TKhaiThue/ngayKy">
+						<td style="width:30%;text-align:center">
+						<i>Ngày <xsl:value-of select="ihtkk:stringDatetime($kskthue/TKhaiThue/ngayKy,'dd')"/> 
+						tháng <xsl:value-of select="ihtkk:stringDatetime($kskthue/TKhaiThue/ngayKy,'mm')"/> 
+						năm <xsl:value-of select="ihtkk:stringDatetime($kskthue/TKhaiThue/ngayKy,'yyyy')"/></i><br/>
+						<b>GIÁM ĐỐC</b>
+						<br/>
+						<i>(Ký, ghi rõ họ tên, đóng dấu)</i>
+						</td>
+					</xsl:if>
+					<xsl:if test="not($kskthue/TKhaiThue/ngayKy)">
+						<td style="width:30%;text-align:center"></td>
+					</xsl:if>
+				</tr>
+				<tr>
+					<td></td>
+					<td style="width:30%;text-align:center">
+						<br/>
+						<br/>
+						<xsl:value-of select="$kskthue/TKhaiThue/nguoiKy"/>
+					</td>
+				</tr>
+			</table>
+			<br/>
+		</div>
+	</xsl:template>
+
+	<!--30/ĐK-TCT, 31/ĐK-TCT-->
+<xsl:template name="tkhaiFooter_30_31_DK_TCT">
+	<xsl:variable name="kskthue" select='HSoThueDTu/HSoKhaiThue/TTinChung/TTinTKhaiThue' />
+	<xsl:variable name="tkchinh" select="HSoThueDTu/HSoKhaiThue/CTieuTKhaiChinh"/>
+
+	<br/>
+	<div class="footer_div">
+    <table style="width:100%; table-layout:fixed;">
+       <tr>
+          <!-- Nhân viên đại lý thuế -->
+          <td style="width:50%; vertical-align:top; text-align:left;">
+             <b>NHÂN VIÊN ĐẠI LÝ THUẾ</b><br/>
+             Họ và tên: <xsl:value-of select="$kskthue/DLyThue/NVienDLy/tenNVienDLyThue"/><br/>
+             Chứng chỉ hành nghề số: <xsl:value-of select="$kskthue/DLyThue/NVienDLy/cchiHNghe"/>
+          </td>
+
+          <!-- Người nộp thuế -->
+          <td style="width:50%; vertical-align:top; text-align:center;">
+             <xsl:if test="$kskthue/ngayKy">
+                <b>NGƯỜI NỘP THUẾ hoặc</b>
+                <br/>
+                <b>NGƯỜI ĐẠI DIỆN THEO PHÁP LUẬT</b><br/>
+                <i>(Ký, ghi rõ họ, tên và đóng dấu)</i>
+             </xsl:if>
+          </td>
+       </tr>
+    </table>
+    <br/>
+</div>
+</xsl:template>
+
+	
+	<!--01/APA-ĐN-->	
+<xsl:template name="tkhaiFooter_01_APA_DN">
+	<xsl:variable name="kskthue" select="HSoThueDTu/HSoKhaiThue/TTinChung/TTinTKhaiThue"/>
+	<xsl:variable name="tkchinh" select="HSoThueDTu/HSoKhaiThue/CTieuTKhaiChinh"/>
+
+	<div class="footer_div">
+		<table width="100%">
+			<tr>
+				<td width="50%"></td>
+				<td width="50%" class="align-c">
+					<i>
+						Ngày <xsl:value-of select="substring($ttkthue/TKhaiThue/ngayKy, 9, 2)" />
+						tháng <xsl:value-of select="substring($ttkthue/TKhaiThue/ngayKy, 6, 2)" />
+						năm <xsl:value-of select="substring($ttkthue/TKhaiThue/ngayKy, 1, 4)" />
+					</i>
+				</td>
+			</tr>
+			<tr>
+				<td width="50%"></td>
+				<td width="50%" class="align-c">
+					<xsl:if test="$kskthue/TKhaiThue/ngayKy">
+						<b>NGƯỜI NỘP THUẾ hoặc <br/>ĐẠI DIỆN HỢP PHÁP CỦA NGƯỜI NỘP THUẾ</b>
+						<br/>
+						<i>Ký, ghi rõ họ tên, chức vụ và đóng dấu (nếu có)</i>
+					</xsl:if>
+				</td>
+			</tr>
+		</table>
+	</div>
+</xsl:template>
+
+<!--start Footer tờ khai 01/GHAN-->	
+	<xsl:template name="tkhaiFooter_01_GHAN">
+		<xsl:variable name="tkchinh" select='HSoThueDTu/HSoKhaiThue/CTieuTKhaiChinh' />
+		<xsl:variable name="ttkthue" select="HSoThueDTu/HSoKhaiThue/TTinChung/TTinTKhaiThue"/>
+		<xsl:variable name="kskthue" select='HSoThueDTu/HSoKhaiThue/TTinChung/TTinTKhaiThue' />
+		<span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<xsl:value-of select="$ttkthue/NNT/tenNNT"/> chịu trách nhiệm trước pháp luật về các thông tin nêu trên 
+		và cam kết nộp đầy đủ số tiền thuế nợ được gia hạn sau khi hết thời hạn gia hạn nộp thuế./.</span>
+		<br/>
+		<div class="footer_div">
+			<table>
+				<tr>
+					
+					<td width="50%">
+					</td>
+					<xsl:if test="$kskthue/TKhaiThue/ngayKy">
+						<td width="50%" class="align-c">
+						<b>NGƯỜI NỘP THUẾ hoặc<br/>ĐẠI DIỆN HỢP PHÁP CỦA NGƯỜI NỘP THUẾ</b>
+						<br/>
+						<i>Ký, ghi rõ họ tên; chức vụ và đóng dấu (nếu có)</i>
+						</td>
+					</xsl:if>
+					<xsl:if test="not($kskthue/TKhaiThue/ngayKy)">
+						<td width="50%" style="text-align:center">
+							
+						</td>
+					</xsl:if>
+				</tr>
+				<tr>
+					
+					<td width="50%"/>
+					<td width="50%" class="align-c">
+					<br/>
+					<br/>					
+						<xsl:value-of select="$kskthue/TKhaiThue/nguoiKy"/>
+					</td>
+				</tr>
+			</table>
+			<br/>
+		</div>
+	</xsl:template>	
+
+	<!--start Footer tờ khai 01/NDAN-->	
+	<xsl:template name="tkhaiFooter_01_NDAN">
+		<xsl:variable name="tkchinh" select='HSoThueDTu/HSoKhaiThue/CTieuTKhaiChinh' />
+		<xsl:variable name="kskthue" select='HSoThueDTu/HSoKhaiThue/TTinChung/TTinTKhaiThue' />
+		<div class="footer_div">
+			<table>
+				<tr>
+					<td width="50%">
+					</td>
+					<xsl:if test="$kskthue/TKhaiThue/ngayKy">
+						<td style="width:50%;text-align:center">
+						<b>NGƯỜI NỘP THUẾ hoặc<br/>ĐẠI DIỆN HỢP PHÁP CỦA NGƯỜI NỘP THUẾ</b>
+						<br/>
+						<i>Ký, ghi rõ họ tên; chức vụ và đóng dấu (nếu có)</i>
+						</td>
+					</xsl:if>
+					<xsl:if test="not($kskthue/TKhaiThue/ngayKy)">
+						<td style="width:50%;text-align:center"></td>
+					</xsl:if>
+				</tr>
+				<tr>
+					<td style="width:50%;text-align:center"/>
+					<td style="width:50%;text-align:center">
+					<br/>
+					<br/>					
+						<xsl:value-of select="$kskthue/TKhaiThue/nguoiKy"/>
+					</td>
+				</tr>
+			</table>
+			<br/>
+		</div>
+	</xsl:template>
+	
+	<!--start Footer tờ khai 01/KTCN-->	
+	<xsl:template name="tkhaiFooter_01_KTCN">
+		<xsl:variable name="tkchinh" select='HSoThueDTu/HSoKhaiThue/CTieuTKhaiChinh' />
+		<xsl:variable name="kskthue" select='HSoThueDTu/HSoKhaiThue/TTinChung/TTinTKhaiThue' />
+		<br/>
+		<div class="footer_div">
+			<table>
+				<tr>
+					<td style="width:50%;text-align:center">
+					</td>
+					<xsl:if test="$kskthue/TKhaiThue/ngayKy">
+						<td style="width:50%;text-align:center">
+						<b>NGƯỜI NỘP THUẾ hoặc<br/>ĐẠI DIỆN HỢP PHÁP CỦA NGƯỜI NỘP THUẾ</b>
+						<br/>
+						<i>Ký, ghi rõ họ tên; chức vụ và đóng dấu (nếu có)</i>
+						</td>
+					</xsl:if>
+					<xsl:if test="not($kskthue/TKhaiThue/ngayKy)">
+						<td style="width:50%;text-align:center"></td>
+					</xsl:if>
+				</tr>
+				<tr>
+					<td style="width:50%;text-align:center"/>
+					<td style="width:50%;text-align:center">
+					<br/>
+					<br/>					
+						<xsl:value-of select="$kskthue/TKhaiThue/nguoiKy"/>
+					</td>
+				</tr>
+			</table>
+			<br/>
+			<div style="padding-top: 6pt">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<b>Hướng dẫn lập mẫu số 01/KTCN:</b></div>
+			<div style="padding-top: 6pt">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<b>Trường hợp 1:</b></div>
+			<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(1) Thời hạn đơn vị A phải thanh toán theo hợp đồng là ngày 15/01.</div>
+			<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(2) Hạn nộp thuế là ngày 20/01.</div>
+			<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(3) Không tính tiền chậm nộp từ ngày 21/01 đến ngày được đơn vị A thanh toán.</div>
+			<div style="padding-top: 6pt">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<b>Trường hợp 2:</b></div>
+			<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(1) Thời hạn đơn vị A phải thanh toán theo hợp đồng là ngày 15/01.</div>
+			<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(2) Hạn nộp thuế là ngày 20/01.</div>
+			<div>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(3) Không tính tiền chậm nộp từ ngày 25/01 đến ngày được đơn vị A thanh toán.</div>
+		
+		</div>
+	</xsl:template>
+	
+	<!--start Footer tờ khai 03/KTCN-->	
+	<xsl:template name="tkhaiFooter_03_KTCN">
+		<xsl:variable name="tkchinh" select='HSoThueDTu/HSoKhaiThue/CTieuTKhaiChinh' />
+		<xsl:variable name="ttkthue" select="HSoThueDTu/HSoKhaiThue/TTinChung/TTinTKhaiThue"/>
+		<xsl:variable name="kskthue" select='HSoThueDTu/HSoKhaiThue/TTinChung/TTinTKhaiThue' />
+		<br/>
+		<div class="footer_div">
+			<table>
+				<tr>
+					<td style="width:50%;text-align:center">
+					</td>
+					<xsl:if test="$kskthue/TKhaiThue/ngayKy">
+						<td style="width:50%;text-align:center">
+						<b>NGƯỜI NỘP THUẾ hoặc<br/>ĐẠI DIỆN HỢP PHÁP CỦA NGƯỜI NỘP THUẾ</b>
+						<br/>
+						<i>Ký, ghi rõ họ tên; chức vụ và đóng dấu (nếu có)</i>
+						</td>
+					</xsl:if>
+					<xsl:if test="not($kskthue/TKhaiThue/ngayKy)">
+						<td style="width:50%;text-align:center"></td>
+					</xsl:if>
+				</tr>
+				<tr>
+					<td style="width:50%;text-align:center"/>
+					<td style="width:50%;text-align:center">
+					<br/>
+					<br/>					
+						<xsl:value-of select="$kskthue/TKhaiThue/nguoiKy"/>
+					</td>
+				</tr>
+			</table>
+			<br/>
+		</div>
+	</xsl:template>
+<!--start Footer DNKHT -->	
+	<xsl:template name="tkhaiFooter_01_DNKHT">
+	<xsl:variable name="kskthue" select='HSoThueDTu/HSoKhaiThue/TTinChung/TTinTKhaiThue' />
+	<!-- <br/><span>&#160;&#160;Tôi cam đoan số liệu khai trên là đúng và chịu trách nhiệm trước pháp luật về số liệu đã khai./... </span> -->
+	<div class="footer_div">
+		<table>
+			<tr>
+				<td width="25%">
+					<br/>
+					<b></b>
+				</td>
+				<td colspan="1" width="30%">
+				</td>
+				<td width="30%" class="align-c">
+				<br/>
+				<i></i>
+				</td>
+				
+			</tr>
+			<tr>
+				
+				<td width="25%">
+					<br/> <br/>
+				</td>
+				<td colspan="1" width="25%">
+				 <br/> <br/>
+				</td>
+				<td>
+					<b>NGƯỜI NỘP THUẾ hoặc  <br/> ĐẠI DIỆN HỢP PHÁP CỦA NGƯỜI NỘP THUẾ  </b>
+					<br/>
+					<i> (Chữ ký, ghi rõ họ tên; chức vụ và đóng dấu (nếu có)/Ký điện tử)</i>
+					</td>
+			</tr>
+			<tr>
+				
+				<td width="25%"></td>
+				<td colspan="1" width="30%">
+					
+				</td>
+				<td width="35%" class="align-c">
+					
+				</td>
+			</tr>
+			<tr>
+				
+				<td width="25%"/>
+				<td width="35%"/>
+				<td colspan="1" width="30%" class="align-c">
+				<br/>
+				<br/>					
+					<xsl:value-of select="$kskthue/TKhaiThue/nguoiKy"/>
+				</td>
+			</tr>
+		</table>
+		<br/>
+		</div>
+	</xsl:template>	
+	
+	<!--start Footer tờ khai 01/TB-DVHT-->	
+	<xsl:template name="tkhaiFooter_01_TB_DVHT">
+		<xsl:variable name="tkchinh" select='HSoThueDTu/HSoKhaiThue/CTieuTKhaiChinh' />
+		<xsl:variable name="kskthue" select='HSoThueDTu/HSoKhaiThue/TTinChung/TTinTKhaiThue' />
+		<br/>
+		<div class="footer_div">
+			<table>
+				<tr>
+					<td style="width:50% ">
+					</td>
+					<xsl:if test="$kskthue/TKhaiThue/ngayKy">
+						<td style="width:50%;text-align:center">
+						<b>ĐƠN VỊ THỰC HIỆN THÔNG BÁO hoặc ĐẠI DIỆN<br/>HỢP PHÁP CỦA ĐƠN VỊ THỰC HIỆN THÔNG BÁO</b>
+						<br/>
+						<i>(Ký, ghi rõ họ tên và đóng dấu (nếu có))</i>
+						</td>
+					</xsl:if>
+					<xsl:if test="not($kskthue/TKhaiThue/ngayKy)">
+						<td style="width:50%;text-align:center"></td>
+					</xsl:if>
+				</tr>
+				<tr>
+					<td style="width:50%"/>
+					<td style="width:50%;text-align:center">
+					<br/>
+					<br/>					
+						<xsl:value-of select="$kskthue/TKhaiThue/nguoiKy"/>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</xsl:template>
+	
+	<!--start Footer tờ khai 01_DKTD_DVHT-->	
+	<xsl:template name="tkhaiFooter_01_DKTD_DVHT">
+		<xsl:variable name="kskthue" select='HSoThueDTu/HSoKhaiThue/TTinChung/TTinTKhaiThue' />
+		<br/>
+		<div class="footer_div">
+			<table>
+				<tr>
+					<td style="width:45%">
+					<b>NHÂN VIÊN ĐẠI LÝ THUẾ</b><br/>
+					Họ và tên: <xsl:value-of select="$kskthue/DLyThue/NVienDLy/tenNVienDLyThue"/><br/>
+					Chứng chỉ hành nghề số: <xsl:value-of select="$kskthue/DLyThue/NVienDLy/cchiHNghe"/>
+					</td>
+					<xsl:if test="$kskthue/ngayKy">
+						<td style="width:55%;text-align:center">
+						<i>Ngày <xsl:value-of select="ihtkk:stringDatetime($kskthue/ngayKy,'dd/mm/yyyy')"/></i><br/>
+						<b>ĐƠN VỊ HỢP THÀNH CHỊU TRÁCH NHIỆM KÊ KHAI</b><br/>
+						<b>hoặc ĐẠI DIỆN HỢP PHÁP CỦA ĐƠN VỊ HỢP THÀNH</b><br/>
+						<b>CHỊU TRÁCH NHIỆM KÊ KHAI</b><br/>
+						<i>(Chữ ký, ghi rõ họ tên; chức vụ và đóng dấu (nếu có)/ Ký điện tử)</i>
+						</td>
+					</xsl:if>
+					<xsl:if test="not($kskthue/ngayKy)">
+						<td style="width:55%;text-align:center">	
+						</td>
+					</xsl:if>
+				</tr>
+				<tr>
+					<td style="width:45%"></td>
+					<td style="width:55%;text-align:center">
+					<br/>
+					<br/>					
+						<xsl:value-of select="$kskthue/nguoiKy"/>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</xsl:template>
+	
+	<!--start Footer tờ khai 06_MGTH-->	
+	<xsl:template name="tkhaiFooter_06_MGTH">
+	<xsl:variable name="tkchinh" select='HSoThueDTu/HSoKhaiThue/CTieuTKhaiChinh' />
+	<xsl:variable name="kskthue" select='HSoThueDTu/HSoKhaiThue/TTinChung/TTinTKhaiThue' />
+
+	<div class="footer_div">
+		<table>
+			<tr>
+				<td width="25%">
+					<br/>
+					<b></b>
+				</td>
+				<td colspan="1" width="30%">
+				</td>
+				
+			</tr>
+			<tr>
+				
+				<td width="20%">
+					<br/> <br/>
+					
+				</td>
+				<td colspan="1" width="20%">
+					<xsl:value-of select="$kskthue/DLyThue/NVienDLy/tenNVienDLyThue"/>
+					 <br/> <br/>
+					<xsl:value-of select="$kskthue/DLyThue/NVienDLy/cchiHNghe"/>
+				</td>
+				<xsl:if test="$kskthue/TKhaiThue/ngayKy ">
+					<td width="35%" class="align-c">
+					<b>NGƯỜI NỘP THUẾ hoặc   ĐẠI DIỆN HỢP PHÁP CỦA NGƯỜI NỘP THUẾ</b>
+					<br/>
+					<i> (Chữ ký, ghi rõ họ tên; chức vụ và đóng dấu (nếu có)/Ký điện tử)</i>
+					</td>
+				</xsl:if>
+				<xsl:if test="not($kskthue/TKhaiThue/ngayKy)">
+					<td width="35%" style="text-align:center">
+						
+					</td>
+				</xsl:if>
+			</tr>
+			<tr>
+				
+				<td width="25%"></td>
+				<td colspan="1" width="30%">
+					
+				</td>
+				<td width="35%" class="align-c">
+					
+				</td>
+			</tr>
+			<tr>
+				
+				<td width="25%"/>
+				<td width="35%"/>
+				<td colspan="1" width="30%" class="align-c">
+				<br/>
+				<br/>					
+					<xsl:value-of select="$kskthue/TKhaiThue/nguoiKy"/>
+				</td>
+			</tr>
+		</table>
+		<br/>
+		</div>
+	</xsl:template>
+</xsl:stylesheet>

@@ -1,0 +1,30 @@
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Logs
+*.log
+*.tmp
+
+# Downloads
+source/*
+
+# Bundled Windows JRE (182MB, not useful on Linux)
+extracted/app/jre/
+
+# Raw installer EXEs
+extracted/app/iTaxViewer.exe
+extracted/app/*.exe
+
+# Unpacked Inno Setup files
+extracted/tmp/
+extracted/pf/
+
+# Large binary/cache
+extracted/app/tmp/

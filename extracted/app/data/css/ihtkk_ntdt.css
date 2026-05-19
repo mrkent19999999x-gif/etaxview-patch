@@ -1,0 +1,315 @@
+#wrapper {
+	background: none repeat scroll 0 0 #FFFFFF;
+	min-height: 100%;
+	margin: auto;
+	padding: 20px;
+	//position: relative;
+	width: 700px;
+  line-height: 18px;
+}
+#headermct1 {
+	height: 160px;
+	width: 100%;
+	//position: relative;
+   margin: auto;
+}
+#headerlef {
+	border: 1px solid;
+	height: 43px;
+	padding: 18px;
+	//position: absolute;
+	text-align: center;
+	width: 98px;
+	top: 10px;
+}
+#headerright {
+	//position: absolute;
+	right: 0;
+	text-align: center;
+}
+#headercenter {
+	left: 190px;
+	//position: absolute;
+	top: 40px;
+	text-align: center;
+	line-height: 22px;
+}
+#conten {
+    float: left;
+    //font-size: 10pt;
+    line-height: 21px;
+    margin: auto;
+    //position: relative;
+    width: 100%;
+}
+#conten_ttnt {
+  margin: auto;
+	//position: relative;
+	float: left;
+	width: 100%;
+}
+#contenTk21_29{
+	//position: relative;
+  float: left;
+  width: 100%;
+  margin: auto;
+}
+#contenTk21_22 {
+	float: left;
+	height: 40px;
+	left: 132px;
+	//position: relative;
+	width: 200px;
+}
+#contenTk21_22 .tk3521 {
+	left: 0;
+  display: block;
+}
+#contenTk21_22 .tk3522 {
+	left: 0;
+  display: block;
+}
+#contenTk21_22 .tk3521_1 {
+	border: 1px solid;
+    height: 14px;
+    margin: 3px 20px;
+    //position: absolute;
+    text-align: center;
+    width: 14px;  
+  
+}
+#contenTk21_22 .tk3522_1 {
+	border: 1px solid;
+    height: 14px;
+    margin: 3px 21px;
+    //position: absolute;
+    text-align: center;
+    width: 14px;
+}
+#contenTk23_29 {
+	float: right;
+	height: 40px;
+	//position: relative;
+	width: 248px;
+}
+#contenTk23_29 .tk3523 {
+	left: 0;
+  display: block;
+}
+#contenTk23_29 .tk3529 {
+	left: 0;
+  display: block;
+
+}
+#contenTk23_29 .tk3523_1{
+	border: 1px solid;
+    height: 14px;
+    margin: 3px 74px;
+    //position: absolute;
+    text-align: center;
+    width: 14px;
+}
+#contenTk23_29 .tk3529_1 {
+    border: 1px solid;
+    height: 14px;
+    margin: 3px 10px;
+    //position: absolute;
+    text-align: center;
+    width: 14px;
+}
+
+.divcheckx {
+    margin-top: -4px;
+}
+.conten_ht {
+	left: 60px;
+	//position: relative;
+	top: 19px;
+	float: left;
+}
+#conten_ttntbt {
+	//position: relative;
+	float: left;
+	width: 100%;
+}
+#conten_table {
+	//position: relative;
+	float: left;
+	width: 100%;
+}
+#conten_table table {
+	width: 100%;
+	border-collapse: collapse;
+	border-color: #000000;
+	border-style: solid;
+	border-width: 1pt;
+  float: left;
+  //position: relative;
+  margin-top: 10px;
+}
+#conten_table table tr {
+	border-collapse: collapse;
+	border-color: #000000;
+	border-style: solid;
+	border-width: 1pt;
+}
+#conten_table table td {
+	border-collapse: collapse;
+	border-color: #000000;
+	border-style: solid;
+	border-width: 1pt;
+}
+#conten_table p {
+  float: left;
+  //position: relative;
+  display: block;
+}
+#conten_table p span{
+  float: left;
+  //position: relative;
+}
+
+.uppercase {text-transform:uppercase;}
+.capitalize {text-transform:capitalize;}
+.tb_strong {
+	color: #000000;
+	font: 10pt arial, helvetica, sans-serif;
+	font-weight: bold;
+  text-align: center !important;
+}
+.title_strong {
+	color: #000000;
+	font: 11pt arial, helvetica, sans-serif;
+	font-weight: bold;
+}
+.ttnt_1,.ttnt_3,.ttnt_4,.ttnt_5,.ttnt_7,.ttnt_8,.ttnt_10,.ttnt_11,.ttnt_12,.ttnt_14,.ttnt_15,.ttnt_17,.ttnt_18,.ttnt_20,.ttnt_21,.ttnt_23,.ttnt_24,.ttnt_26{
+   border-bottom: 1px dotted salmon;
+    color: #2E2E2E;
+    //font-size: 12px;
+    left: 10px;
+    //position: relative;
+}
+.ttnt_2 {
+  left: 450px;
+  //position: absolute;
+}
+.ttnt_6 {
+	left: 450px;
+  //position: absolute;
+}
+.ttnt_9 {
+	left: 450px;
+  //position: absolute;
+}
+.ttnt_13 {
+	left: 450px;
+  //position: absolute;
+}
+.ttnt_16 {
+	left: 450px;
+  //position: absolute;
+}
+.ttnt_19 {
+  left: 450px;
+  //position: absolute;
+}
+.ttnt_22 {
+	left: 450px;
+  //position: absolute;
+}
+.ttnt_25 {
+//	position: absolute;
+	right: 130px;
+}
+.ttnt_26a {
+    left: 270px;
+  //  position: absolute;
+}
+.ttnt_26b {
+    left: 450px;
+    //position: absolute;
+}
+.ttnt_26c {
+    left: 270px;
+    //position: absolute;
+}
+.ttnt_27{
+  font: 10pt arial, helvetica, sans-serif;
+  padding: 5px;
+}
+
+.sptienmatCk1 {
+    border: 1px solid;
+    height: 15px;
+    margin: 0 -23px;
+    //position: absolute;
+    width: 15px;
+}
+
+.sptienmatCk2 {
+    border: 1px solid;
+    height: 15px;
+    margin: 0;
+    //position: absolute;
+    width: 15px;
+}
+.tienmatCk {
+    font-size: 15px;
+    margin-top: -4px;
+}
+div.break_word {
+    width: 300px;
+    word-wrap: break-word;
+    -ms-word-wrap: break-word;
+    float: left;
+    //position: relative;
+}
+.float_l{
+  float: left;
+  //position: relative;
+}
+
+ol { margin: 0; padding: 0 }
+      #wrapper { background: none repeat scroll 0 0 #FFFFFF; min-height: 100%; margin: auto; padding: 40px; position: relative; width: 700px;}
+      #headermct { margin: auto; position: relative; width: 100%; }
+      #conten { float: left; margin: auto; position: relative; width: 100%; }
+      .ms09 { border: 1px solid; float: right; height: 19px; padding: 10px; position: relative; top: -13px; width: 145px; text-align:center; }
+      .table_hd { width: 100%; text-align: center; }
+      #headermct table td{ padding: 0px;}
+      .table_hr1 { margin-top: -8px; border-width: 1px thin; width: 105px; }
+      .table_hr2 { border-width: 1px thin; margin-top: 8px; width: 210px; }
+      .table_hr3 { border-width: 1px thin; margin-top: 8px; width: 150px; }
+      .c5 { width: 35px; border-style: solid; border-color: #000000; border-width: 0.5pt; text-align: center; }
+      .c9 { width: 74.4pt; border-style: solid; border-color: #000000; border-width: 0.5pt; padding: 0pt 5.8pt 0pt 5.8pt }
+      .c8 { border-style: solid; border-color: #000000; border-width: 0pt; padding: 0pt 5.8pt 0pt 5.8pt }
+      .c20 { width: 54.2pt; border-style: solid; border-color: #000000; border-width: 0.5pt;  padding: 0pt 5.8pt 0pt 5.8pt  text-align: center;
+      }
+      .c13 { width: 233.7pt; border-style: solid; border-color: #000000; border-width: 0pt; padding: 0pt 5.8pt 0pt 5.8pt }
+      .c14 { width: 47.7pt; border-style: solid; border-color: #000000; border-width: 0.5pt; padding: 2px; }
+      .c22 { width: 233.6pt; border-style: solid; border-color: #000000; border-width: 0pt; padding: 0pt 5.8pt 0pt 5.8pt }
+      .c6 { width: 52.8pt; border-style: solid; border-color: #000000; border-width: 0.5pt; padding: 0pt 5.8pt 0pt 5.8pt }
+      .c21 { width: 61.4pt; border-style: solid; border-color: #000000; border-width: 0.5pt;  padding: 0pt 5.8pt 0pt 5.8pt  text-align: center;
+      }
+      .c26 { border-style: solid; border-color: #000000; border-width: 0pt; }
+      .c7 { width: 97.1pt; border-style: solid; border-color: #000000; border-width: 0.5pt; padding: 0pt 5.8pt 0pt 5.8pt }
+      .c2 { line-height: 1.5; padding-top: 6pt; height: 11pt; direction: ltr; padding-bottom: 0pt }
+      .c3 { line-height: 1.5; padding-top: 6pt; direction: ltr; padding-bottom: 0pt }
+      .c19 { height: 11pt; direction: ltr }
+      .c10 { height: 28pt }
+      .c1 { font-size: 13px; }
+      .c18 { height: 22pt; }
+      .c15 {  font-size: 12px; }
+      .c4 { font-weight: bold }
+      .c0 {  font-size: 15px; }
+      .c25 { height: 0pt }
+      .c11 { text-align: center }
+      .c23 { font-style: italic }
+      .c12 { height: 27pt; line-height: 40px; }
+      .title { padding-top: 24pt; line-height: 1.1500000000000001; text-align: left; color: #000000;  font-size: 12px; }
+      .subtitle { padding-top: 18pt; line-height: 1.1500000000000001; text-align: left; color: #666666; font-style: italic; font-size: 24px; }
+      li { color: #000000;  font-size: 12px;  }
+      #conten .table_hd { border-collapse: collapse; border-color: #000000; border-style: solid; border-width: 1pt; float: left; margin-top: 10px; position: relative; width: 100%; }
+      #conten .table_hd tr { border-collapse: collapse; border-color: #000000; border-style: solid; border-width: 1pt; text-align: center; }
+      #conten .table_hd td { border-collapse: collapse; border-color: #000000; border-style: solid; border-width: 1pt; }
+      .contenms9 {  font-size: 13px; }
+      .tb_strong { align: center; }

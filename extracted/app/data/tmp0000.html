@@ -1,0 +1,146 @@
+<html>
+<link rel="stylesheet" type="text/css" href="css/ihtkk.css">
+<link rel="stylesheet" type="text/css" href="css/ihtkk_ntdt.css">
+<head>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script>
+function gup( name )
+{
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( window.location.href );
+  if( results == null )
+    return null; 
+  else
+    return results[1];
+}
+
+function loadXMLDoc(dname)
+{
+if (window.ActiveXObject)
+  {
+  xhttp=new ActiveXObject("Msxml2.XMLHTTP.3.0");
+  }
+else
+  {
+  xhttp=new XMLHttpRequest();
+  }
+xhttp.open("GET",dname,false);
+xhttp.send("");
+return xhttp.responseXML;
+}
+
+function displayResult()
+{
+var partXML = gup( 'filexml' );
+var partXSL = gup( 'filexslt' );
+// code for IE
+if (window.ActiveXObject)
+  {
+  		var vxml = new ActiveXObject("Microsoft.XMLDOM");
+        vxml.async = false;
+        vxml.load(partXML);
+        // Load the XSL
+        var vxsl = new ActiveXObject("Microsoft.XMLDOM");
+        vxsl.async = false;
+        vxsl.load(partXSL);
+		ex = TransformToHtmlText(vxml,vxsl);
+	document.getElementById("tkhai").innerHTML=ex;
+  }
+// code for Mozilla, Firefox, Opera, etc.
+else if (document.implementation && document.implementation.createDocument)
+  {
+  xml=loadXMLDoc(partXML);
+  xsl=loadXMLDoc(partXSL);
+  xsltProcessor=new XSLTProcessor();
+  xsltProcessor.importStylesheet(xsl);
+  resultDocument = xsltProcessor.transformToFragment(xml,document);
+  document.getElementById("tkhai").appendChild(resultDocument);
+  }
+}
+function TransformToHtmlText(xmlDoc, xsltDoc) {
+    if (typeof (XSLTProcessor) != "undefined") { // FF, Safari, Chrome etc
+        var xsltProcessor = new XSLTProcessor();
+        xsltProcessor.importStylesheet(xsltDoc);
+        var xmlFragment = xsltProcessor.transformToFragment(xmlDoc, document);
+        return GetXmlStringFromXmlDoc(xmlFragment);
+    }
+
+    if (typeof (xmlDoc.transformNode) != "undefined") { // IE6, IE7, IE8
+		try {
+        return xmlDoc.transformNode(xsltDoc);
+		}
+        catch (err) {   
+            return err.message;
+        }
+    }
+    else {
+        try { // IE9 and grater
+            if (window.ActiveXObject) {
+                var xslt = new ActiveXObject("Msxml2.XSLTemplate");
+                var xslDoc = new ActiveXObject("Msxml2.FreeThreadedDOMDocument");
+                xslDoc.loadXML(xsltDoc.xml);
+                xslt.stylesheet = xslDoc;
+                var xslProc = xslt.createProcessor();
+                xslProc.input = xmlDoc;
+                xslProc.transform();
+                return xslProc.output;
+            }
+        }
+        catch (e) {           
+            return "anh dinh";
+        }
+
+    }
+}
+function displaySig() {
+    var result;
+    try {
+        result = displaySigFunction();
+    } catch (e) {
+        alert('Đã có lỗi xảy ra: ' + e.message);
+        return;
+    }
+}
+
+</script>
+</head>
+<body style="background-color:rgb(86,86,86)">
+ <table style="background-color:white" width="900" cellpadding="30" cellspacing="0" border="0" align="center">
+  <tr>
+   <td>
+    <table cellpadding="0" cellspacing="0" border="0" align="center">
+     <tr>
+      <td align="left" id="tkhai">
+      </td>
+     </tr>
+     <tr>
+      <td id="signature"></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ </table>
+<script type="text/javascript">
+displayResult();
+$(document).ready(function(){
+	$('.number').each(function(index){
+		var x = $(this).text();
+		$(this).text(formatNumber(x));
+	});
+})
+document.attachEvent("onkeydown", function handleKeyDown(event) {
+        if (event.ctrlKey) {
+            switch (event.keyCode) {
+            case 79: // o
+            case 80: // p
+                event.keyCode = 0;
+                return false;
+            }
+        }
+    });
+</script>
+</body>
+</html>
