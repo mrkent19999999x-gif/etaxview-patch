@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SRC_DIR="$SCRIPT_DIR/src"
+LIB_DIR="$SCRIPT_DIR/lib"
+BUILD_DIR="$SCRIPT_DIR/build"
+AGENT_JAR="$SCRIPT_DIR/itaxviewer-signature-bypass-agent.jar"
+
+JAVA_HOME=${JAVA_HOME:-/opt/jdk-11.0.26+4}
+JAVAC="$JAVA_HOME/bin/javac"
+JAR="$JAVA_HOME/bin/jar"
+
+ASM_JAR="$LIB_DIR/asm-9.7.jar"
+if [ ! -f "$ASM_JAR" ]; then
+    echo "Downloading ASM 9.7..."
+    mkdir -p "$LIB_DIR"
+    curl -sL "https://repo1.maven.org/maven2/org/ow2/asm/asm/9.7/asm-9.7.jar" -o "$ASM_JAR"
+fi
+
+rm -rf "$BUILD_DIR"
+mkdir -p "$BUILD_DIR/classes"
+
+echo "Compiling agent..."
+"$JAVAC" -d "$BUILD_DIR/classes" \
+    -classpath "$ASM_JAR" \
+    -source 8 -target 8 \
+    "$SRC_DIR/Agent.java" "$SRC_DIR/SignatureBypassTransformer.java"
+
+echo "Extracting ASM into agent..."
+cd "$BUILD_DIR/classes"
+"$JAR" xf "$ASM_JAR" org/
+
+echo "Creating manifest..."
+cat > "$BUILD_DIR/manifest.mf" <<'MANIFEST'
+Manifest-Version: 1.0
+Premain-Class: itaxviewer.agent.Agent
+Can-Retransform-Classes: true
+
+MANIFEST
+
+echo "Packaging agent JAR..."
+cd "$BUILD_DIR/classes"
+"$JAR" cfm "$AGENT_JAR" "$BUILD_DIR/manifest.mf" itaxviewer/ org/
+
+echo ""
+echo "=== Build complete ==="
+echo "Agent JAR: $AGENT_JAR"
+ls -lh "$AGENT_JAR"
+echo ""
+echo "=== USAGE ==="
+echo "java -javaagent:itaxviewer-signature-bypass-agent.jar -jar itaxviewer.jar"
+echo ""
+echo "Or for iTaxViewer launcher, add to JVM args:"
+echo "  -javaagent:path/to/itaxviewer-signature-bypass-agent.jar"
