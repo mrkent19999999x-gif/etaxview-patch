@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-Premain-Class: itaxviewer.agent.Agent
-Main-Class: itaxviewer.agent.Agent
-Can-Retransform-Classes: true
-

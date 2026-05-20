@@ -9,6 +9,11 @@
     "FRIDORA_REPORTS_DIR": "/root/etaxview-patch/reports/fridora"
   },
   "scripts": {
+    "signature_bypass": {
+      "name": "signature-bypass.js",
+      "description": "Bypass XML signature verification, certificate chain validation, and OCSP revocation",
+      "target": "iTaxViewer.exe"
+    },
     "ssl_pinning": {
       "name": "ssl-unpin.js",
       "description": "Bypass SSL pinning for network traffic analysis",
@@ -17,16 +22,6 @@
     "crypto_trace": {
       "name": "crypto-trace.js",
       "description": "Trace cryptographic operations (Bouncy Castle)",
-      "target": "iTaxViewer.exe"
-    },
-    "file_access": {
-      "name": "file-access.js",
-      "description": "Monitor file I/O operations",
-      "target": "iTaxViewer.exe"
-    },
-    "registry_monitor": {
-      "name": "registry-monitor.js",
-      "description": "Monitor Windows registry access",
       "target": "iTaxViewer.exe"
     }
   }

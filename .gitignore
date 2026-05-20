@@ -28,3 +28,11 @@ extracted/pf/
 
 # Large binary/cache
 extracted/app/tmp/
+
+# Build artifacts
+agent/java-agent/build/
+agent/java-agent/test/classes/
+
+# Extracted real classes for testing
+agent/java-agent/test/classes/real-test/
+extracted/app/seatechit/

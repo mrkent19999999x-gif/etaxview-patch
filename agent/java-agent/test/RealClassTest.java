@@ -9,37 +9,44 @@ public class RealClassTest {
     static int failed = 0;
 
     public static void main(String[] args) throws Exception {
-        String dir = args.length > 0 ? args[0] : "/tmp/sig-real";
+        if (args.length < 1) {
+            System.err.println("Usage: RealClassTest <base-dir>");
+            System.exit(1);
+        }
+        String baseDir = args[0];
 
         System.out.println("=== Real iTaxViewer class file transformation test ===\n");
+        System.out.println("Base dir: " + baseDir + "\n");
 
         // Target classes — should be transformed
-        testFile(dir + "/" + "seatechit/ihtkk/tool/signature/IHTKKXMLSignature.class", true);
-        testFile(dir + "/" + "seatechit/ihtkk/tool/signature/IHTKKXMLTemSignature.class", true);
-        testFile(dir + "/" + "seatechit/ihtkk/tool/signature/CertVerifier.class", true);
+        testFile(baseDir, "seatechit/ihtkk/tool/signature/IHTKKXMLSignature.class", true);
+        testFile(baseDir, "seatechit/ihtkk/tool/signature/IHTKKXMLTemSignature.class", true);
+        testFile(baseDir, "seatechit/ihtkk/tool/signature/CertVerifier.class", true);
 
         // Non-target classes — should NOT be transformed
-        testFile(dir + "/" + "seatechit/ihtkk/tool/signature/XMLSignatureValidationResult.class", false);
-        testFile(dir + "/" + "seatechit/ihtkk/tool/signature/X509KeySelector.class", false);
+        testFile(baseDir, "seatechit/ihtkk/tool/signature/XMLSignatureValidationResult.class", false);
+        testFile(baseDir, "seatechit/ihtkk/tool/signature/X509KeySelector.class", false);
 
         System.out.println("\n=== Results ===");
         System.out.println("Passed: " + passed + ", Failed: " + failed);
         if (failed > 0) System.exit(1);
     }
 
-    static void testFile(String path, boolean shouldTransform) throws Exception {
-        String shortName = path.substring(path.lastIndexOf('/') + 1);
-        byte[] original = readFile(path);
+    static void testFile(String baseDir, String relativePath, boolean shouldTransform) throws Exception {
+        String fullPath = baseDir + "/" + relativePath;
+        File f = new File(fullPath);
+        if (!f.exists()) {
+            System.out.println("  SKIP: " + relativePath + " (file not found)");
+            return;
+        }
 
-        String internalClassName = path
-            .replace("/tmp/sig-real/", "")
-            .replace(".class", "")
-            .replace('/', '.');
+        String shortName = relativePath.substring(relativePath.lastIndexOf('/') + 1);
+        byte[] original = readFile(fullPath);
+
+        String internalClassName = relativePath.replace(".class", "");
 
         SignatureBypassTransformer t = new SignatureBypassTransformer();
-        byte[] transformed = t.transform(null,
-            internalClassName.replace('.', '/'),
-            null, null, original);
+        byte[] transformed = t.transform(null, internalClassName, null, null, original);
 
         if (transformed == null && shouldTransform) {
             System.out.println("  FAIL: " + shortName + " should transform but was skipped");
@@ -48,7 +55,6 @@ public class RealClassTest {
             System.out.println("  FAIL: " + shortName + " should NOT transform but was changed");
             failed++;
         } else if (transformed != null) {
-            // Verify valid bytecode
             try {
                 ClassReader cr = new ClassReader(transformed);
                 System.out.println("  PASS: " + shortName + " transformed (" + original.length + " -> " + transformed.length + " bytes, class=" + cr.getClassName() + ")");
@@ -67,7 +73,10 @@ public class RealClassTest {
         File f = new File(path);
         byte[] data = new byte[(int) f.length()];
         try (FileInputStream fis = new FileInputStream(f)) {
-            fis.read(data);
+            int read = fis.read(data);
+            if (read != data.length) {
+                throw new IOException("Incomplete read: " + read + " of " + data.length);
+            }
         }
         return data;
     }

@@ -3,20 +3,17 @@
   "name": "etaxview-patch",
   "version": "1.0.0",
   "description": "iTaxViewer Reverse Engineering Project",
-  "mcp": {
+  "instructions": [
+    "agent/agent-prompt.md",
+    "skill/SKILL.md",
+    "README.md"
+  ],
+  "mcpServers": {
     "jadx": {
-      "type": "local",
-      "command": ["jadx"],
-      "environment": {
+      "command": "jadx",
+      "args": [],
+      "env": {
         "JADX_WORKSPACE": "/root/etaxview-patch/extracted/app"
-      },
-      "enabled": true
-    },
-    "fridora": {
-      "type": "local",
-      "command": ["fridora-mcp"],
-      "environment": {
-        "FRIDORA_SCRIPTS_DIR": "/root/etaxview-patch/scripts/frida"
       },
       "enabled": true
     }

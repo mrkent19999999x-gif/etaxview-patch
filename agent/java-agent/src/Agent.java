@@ -1,7 +1,10 @@
 package itaxviewer.agent;
 
 import java.awt.Desktop;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.lang.instrument.Instrumentation;
 import java.nio.charset.StandardCharsets;
@@ -15,10 +18,11 @@ public class Agent {
     private static final String PREFIX = "[iTaxViewer-Agent]";
     private static final String ENV_VAR = "_JAVA_OPTIONS";
     private static final String REG_FILE = "install-agent.reg";
+    private static final String VERSION = "1.0.0";
 
     public static void premain(String args, Instrumentation inst) {
         inst.addTransformer(new SignatureBypassTransformer(), true);
-        System.out.println(PREFIX + " Signature bypass agent loaded");
+        System.out.println(PREFIX + " v" + VERSION + " - Signature bypass agent loaded");
         System.out.println(PREFIX + " Patching: IHTKKXMLSignature, IHTKKXMLTemSignature, CertVerifier");
     }
 
@@ -33,8 +37,12 @@ public class Agent {
 
         if (os.contains("windows")) {
             installWindows(jarPath);
-        } else {
+        } else if (os.contains("linux") || os.contains("unix")) {
             installLinux(jarPath);
+        } else if (os.contains("mac")) {
+            installMacOS(jarPath);
+        } else {
+            installGeneric(jarPath);
         }
     }
 
@@ -42,7 +50,6 @@ public class Agent {
         String jarAbsolute = jarPath.toString();
         String jarDir = jarPath.getParent().toString();
 
-        // Double backslashes for .reg format
         String jarReg = jarAbsolute.replace("\\", "\\\\");
         String regContent = "Windows Registry Editor Version 5.00\r\n"
             + "\r\n"
@@ -54,11 +61,11 @@ public class Agent {
 
         File regFile = regPath.toFile();
 
+        System.out.println(PREFIX + " v" + VERSION);
         System.out.println(PREFIX + " Created: " + regPath);
         System.out.println(PREFIX + " Env var: " + ENV_VAR);
         System.out.println(PREFIX + " Agent:   " + jarAbsolute);
 
-        // Try to open the .reg file automatically
         boolean opened = false;
         try {
             if (Desktop.isDesktopSupported()) {
@@ -69,7 +76,6 @@ public class Agent {
                 }
             }
         } catch (Exception e) {
-            // fallback
         }
 
         if (opened) {
@@ -87,10 +93,87 @@ public class Agent {
             + " from Windows Environment Variables.");
     }
 
-    private static void installLinux(Path jarPath) {
+    private static void installLinux(Path jarPath) throws Exception {
         String agentOpt = "-javaagent:" + jarPath.toString();
-        System.out.println(PREFIX + " On Linux/macOS, run this once:");
+        String envLine = "export " + ENV_VAR + "=\"" + agentOpt + "\"";
+
+        Path bashrc = Paths.get(System.getProperty("user.home"), ".bashrc");
+        boolean alreadyConfigured = false;
+
+        if (Files.exists(bashrc)) {
+            try (BufferedReader br = new BufferedReader(new FileReader(bashrc.toFile()))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    if (line.contains(ENV_VAR) && line.contains(jarPath.getFileName().toString())) {
+                        alreadyConfigured = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (alreadyConfigured) {
+            System.out.println(PREFIX + " v" + VERSION);
+            System.out.println(PREFIX + " Already configured in " + bashrc);
+            System.out.println(PREFIX + " Agent: " + jarPath);
+        } else {
+            try (PrintWriter pw = new PrintWriter(new FileWriter(bashrc.toFile(), true))) {
+                pw.println();
+                pw.println("# iTaxViewer Signature Bypass Agent v" + VERSION);
+                pw.println(envLine);
+            }
+            System.out.println(PREFIX + " v" + VERSION);
+            System.out.println(PREFIX + " Added to " + bashrc);
+            System.out.println(PREFIX + " Agent: " + jarPath);
+            System.out.println();
+            System.out.println(PREFIX + " To activate in current session:");
+            System.out.println("  " + envLine);
+            System.out.println(PREFIX + " Or run: source ~/.bashrc");
+            System.out.println(PREFIX + " To uninstall, remove the line from ~/.bashrc");
+        }
+    }
+
+    private static void installMacOS(Path jarPath) throws Exception {
+        String agentOpt = "-javaagent:" + jarPath.toString();
+        String envLine = "export " + ENV_VAR + "=\"" + agentOpt + "\"";
+
+        Path zshrc = Paths.get(System.getProperty("user.home"), ".zshrc");
+        Path bashrc = Paths.get(System.getProperty("user.home"), ".bash_profile");
+        Path target = Files.exists(zshrc) ? zshrc : bashrc;
+
+        boolean alreadyConfigured = false;
+        if (Files.exists(target)) {
+            try (BufferedReader br = new BufferedReader(new FileReader(target.toFile()))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    if (line.contains(ENV_VAR) && line.contains(jarPath.getFileName().toString())) {
+                        alreadyConfigured = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (alreadyConfigured) {
+            System.out.println(PREFIX + " v" + VERSION);
+            System.out.println(PREFIX + " Already configured in " + target);
+        } else {
+            try (PrintWriter pw = new PrintWriter(new FileWriter(target.toFile(), true))) {
+                pw.println();
+                pw.println("# iTaxViewer Signature Bypass Agent v" + VERSION);
+                pw.println(envLine);
+            }
+            System.out.println(PREFIX + " v" + VERSION);
+            System.out.println(PREFIX + " Added to " + target);
+            System.out.println(PREFIX + " Run: source " + target);
+        }
+    }
+
+    private static void installGeneric(Path jarPath) {
+        String agentOpt = "-javaagent:" + jarPath.toString();
+        System.out.println(PREFIX + " v" + VERSION);
+        System.out.println(PREFIX + " Unsupported OS: " + System.getProperty("os.name"));
+        System.out.println(PREFIX + " Run this once:");
         System.out.println("  export " + ENV_VAR + "=\"" + agentOpt + "\"");
-        System.out.println(PREFIX + " Or add the line above to ~/.bashrc for persistence.");
     }
 }

@@ -3,88 +3,97 @@ import seatechit.ihtkk.tool.signature.IHTKKXMLTemSignature;
 import seatechit.ihtkk.tool.signature.CertVerifier;
 
 public class TestRunner {
-    public static void main(String[] args) throws Exception {
-        int passed = 0;
-        int failed = 0;
 
+    private static int passed = 0;
+    private static int failed = 0;
+    private static int total = 0;
+
+    public static void main(String[] args) throws Exception {
         boolean agentActive = false;
         for (String a : args) {
             if ("-agent".equals(a)) agentActive = true;
         }
 
-        System.out.println("=== iTaxViewer Signature Bypass Agent Test ===");
-        System.out.println("Mode: " + (agentActive ? "WITH AGENT" : "WITHOUT AGENT"));
-        System.out.println();
+        String mode = agentActive ? "WITH AGENT" : "WITHOUT AGENT";
+        System.out.println("==========================================");
+        System.out.println(" iTaxViewer Signature Bypass Agent Tests");
+        System.out.println(" Mode: " + mode);
+        System.out.println("==========================================\n");
 
-        // Test 1: IHTKKXMLSignature.verifyXMLSignature
+        testIHTKKXMLSignature();
+        testIHTKKXMLTemSignature();
+        testCertVerifier();
+        testNonTargetClass();
+
+        System.out.println("\n==========================================");
+        System.out.println(" Results: " + passed + "/" + total + " passed");
+        if (failed > 0) {
+            System.out.println(" FAILED: " + failed + " test(s) failed");
+            if (agentActive) System.exit(1);
+        } else {
+            System.out.println(" ALL TESTS PASSED");
+        }
+        System.out.println("==========================================");
+    }
+
+    private static void testIHTKKXMLSignature() {
+        System.out.println("[Test] IHTKKXMLSignature.verifyXMLSignature()");
+        IHTKKXMLSignature.count = 0;
         IHTKKXMLSignature sig1 = new IHTKKXMLSignature();
         sig1.verifyXMLSignature(null, null);
-        if (IHTKKXMLSignature.count == 0) {
-            System.out.println("  PASS: IHTKKXMLSignature.verifyXMLSignature() was NOP'd");
-            passed++;
-        } else {
-            System.out.println("  FAIL: IHTKKXMLSignature.verifyXMLSignature() was NOT NOP'd");
-            failed++;
-        }
+        assertResult("IHTKKXMLSignature.verifyXMLSignature()", IHTKKXMLSignature.count == 0);
+    }
 
-        // Test 2: IHTKKXMLTemSignature.verifyXMLSignature
+    private static void testIHTKKXMLTemSignature() {
+        System.out.println("[Test] IHTKKXMLTemSignature.verifyXMLSignature()");
+        IHTKKXMLTemSignature.count = 0;
         IHTKKXMLTemSignature sig2 = new IHTKKXMLTemSignature();
         sig2.verifyXMLSignature(null, null);
-        if (IHTKKXMLTemSignature.count == 0) {
-            System.out.println("  PASS: IHTKKXMLTemSignature.verifyXMLSignature() was NOP'd");
-            passed++;
-        } else {
-            System.out.println("  FAIL: IHTKKXMLTemSignature.verifyXMLSignature() was NOT NOP'd");
-            failed++;
-        }
+        assertResult("IHTKKXMLTemSignature.verifyXMLSignature()", IHTKKXMLTemSignature.count == 0);
+    }
 
-        // Test 3: CertVerifier.verifyCertificationChain
+    private static void testCertVerifier() {
+        System.out.println("[Test] CertVerifier.verifyCertificationChain()");
+        CertVerifier.count = 0;
         CertVerifier cv = new CertVerifier();
         cv.verifyCertificationChain(null, null, null);
-        if (CertVerifier.count == 0) {
-            System.out.println("  PASS: CertVerifier.verifyCertificationChain() was NOP'd");
-            passed++;
-        } else {
-            System.out.println("  FAIL: CertVerifier.verifyCertificationChain() was NOT NOP'd");
-            failed++;
-        }
+        assertResult("CertVerifier.verifyCertificationChain()", CertVerifier.count == 0);
 
-        // Test 4: CertVerifier.verifyCertificate
+        System.out.println("[Test] CertVerifier.verifyCertificate()");
+        CertVerifier.count = 0;
         cv.verifyCertificate(null);
-        if (CertVerifier.count == 0) {
-            System.out.println("  PASS: CertVerifier.verifyCertificate() was NOP'd");
-            passed++;
-        } else {
-            System.out.println("  FAIL: CertVerifier.verifyCertificate() was NOT NOP'd");
-            failed++;
-        }
+        assertResult("CertVerifier.verifyCertificate()", CertVerifier.count == 0);
 
-        // Test 5: CertVerifier.checkRevocationStatus (X509Certificate[])
+        System.out.println("[Test] CertVerifier.checkRevocationStatus(cert, X509Certificate[])");
+        CertVerifier.count = 0;
         cv.checkRevocationStatus(null, (java.security.cert.X509Certificate[]) null);
-        if (CertVerifier.count == 0) {
-            System.out.println("  PASS: CertVerifier.checkRevocationStatus(cert, X509Certificate[]) was NOP'd");
-            passed++;
-        } else {
-            System.out.println("  FAIL: CertVerifier.checkRevocationStatus(cert, X509Certificate[]) was NOT NOP'd");
-            failed++;
-        }
+        assertResult("CertVerifier.checkRevocationStatus(array)", CertVerifier.count == 0);
 
-        // Test 6: CertVerifier.checkRevocationStatus (single X509Certificate)
+        System.out.println("[Test] CertVerifier.checkRevocationStatus(cert, single)");
+        CertVerifier.count = 0;
         cv.checkRevocationStatus(null, (java.security.cert.X509Certificate) null);
-        if (CertVerifier.count == 0) {
-            System.out.println("  PASS: CertVerifier.checkRevocationStatus(cert, single) was NOP'd");
+        assertResult("CertVerifier.checkRevocationStatus(single)", CertVerifier.count == 0);
+    }
+
+    private static void testNonTargetClass() {
+        System.out.println("[Test] NonTargetClass.doSomething() should NOT be affected");
+        NonTargetClass ntc = new NonTargetClass();
+        try {
+            ntc.doSomething();
+            assertResult("NonTargetClass.doSomething()", true);
+        } catch (Exception e) {
+            assertResult("NonTargetClass.doSomething()", false);
+        }
+    }
+
+    private static void assertResult(String name, boolean ok) {
+        total++;
+        if (ok) {
+            System.out.println("  [PASS] " + name);
             passed++;
         } else {
-            System.out.println("  FAIL: CertVerifier.checkRevocationStatus(cert, single) was NOT NOP'd");
+            System.out.println("  [FAIL] " + name);
             failed++;
-        }
-
-        System.out.println();
-        if (failed == 0) {
-            System.out.println("ALL " + passed + " TESTS PASSED" + (agentActive ? " (agent working correctly)" : " (expected without agent)"));
-        } else {
-            System.out.println(passed + " PASSED, " + failed + " FAILED" + (agentActive ? " (agent may not be working!)" : " (expected without agent)"));
-            if (agentActive) System.exit(1);
         }
     }
 }
