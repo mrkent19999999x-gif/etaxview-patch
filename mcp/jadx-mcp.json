@@ -7,7 +7,7 @@
   "env": {
     "JADX_WORKSPACE": "/root/etaxview-patch/extracted/app",
     "JADX_OUTPUT_DIR": "/root/etaxview-patch/reports/jadx-output",
-    "JAVA_HOME": "/usr/lib/jvm/java-11-openjdk-arm64"
+    "JAVA_HOME": "/opt/jdk-11.0.26+4"
   },
   "targets": {
     "main_jar": {

@@ -1,42 +1,24 @@
 {
+  "$schema": "https://opencode.ai/config.json",
   "name": "etaxview-patch",
   "version": "1.0.0",
   "description": "iTaxViewer Reverse Engineering Project",
-  "configuration": {
-    "mcpServers": {
-      "jadx": {
-        "command": "jadx",
-        "args": [],
-        "env": {
-          "JADX_WORKSPACE": "/root/etaxview-patch/extracted/app"
-        },
-        "alwaysAllow": []
+  "mcp": {
+    "jadx": {
+      "type": "local",
+      "command": ["jadx"],
+      "environment": {
+        "JADX_WORKSPACE": "/root/etaxview-patch/extracted/app"
       },
-      "fridora": {
-        "command": "fridora-mcp",
-        "args": [],
-        "env": {
-          "FRIDORA_SCRIPTS_DIR": "/root/etaxview-patch/scripts/frida"
-        },
-        "alwaysAllow": []
-      }
+      "enabled": true
     },
-    "targets": {
-      "primary": {
-        "path": "/root/etaxview-patch/extracted/app/itaxviewer.jar",
-        "type": "java-archive",
-        "description": "Main iTaxViewer application"
+    "fridora": {
+      "type": "local",
+      "command": ["fridora-mcp"],
+      "environment": {
+        "FRIDORA_SCRIPTS_DIR": "/root/etaxview-patch/scripts/frida"
       },
-      "updater": {
-        "path": "/root/etaxview-patch/extracted/app/update/updater.jar",
-        "type": "java-archive",
-        "description": "Auto-update component"
-      },
-      "launcher": {
-        "path": "/root/etaxview-patch/extracted/app/iTaxViewer.exe",
-        "type": "win32-pe",
-        "description": "Native Windows launcher"
-      }
+      "enabled": true
     }
   }
 }
